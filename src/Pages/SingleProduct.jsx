@@ -3,12 +3,10 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Button,
-  IconButton,
-  Select,
-  Option,
 } from "@material-tailwind/react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Spinner } from "@material-tailwind/react";
+import { Carousel } from "@material-tailwind/react";
 
 import VegIcon from "../assets/Veg.png";
 import CardDefault from "../Components/GlobalComponents/CardDefault";
@@ -38,7 +36,7 @@ export default function SingleProduct() {
   const [shopData, setShopData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [active, setActive] = useState();
+  const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = useState(1);
   const [size, setSize] = useState(null);
   const [weight, setWeight] = useState(null);
@@ -83,6 +81,15 @@ export default function SingleProduct() {
     });
   };
 
+  function isValidUrl(url) {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   const [activeAccordion, setActiveAccordion] = useState(null); // State variable for active accordion
 
   const toggleAccordion = (value) => {
@@ -99,7 +106,7 @@ export default function SingleProduct() {
         setWeight(response.data?.sizes[0].size);
         setPrice(response.data?.sizes[0].price);
         setDiscountPrice(response.data?.sizes[0].discountPrice);
-        setActive(response.data.imageUrl[0]);
+        setActiveIndex(response.data.imageUrl[0]);
       } catch (err) {
         setError(err);
       } finally {
@@ -181,42 +188,55 @@ export default function SingleProduct() {
   console.log("shio", shopData?.sizes);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-screen flex flex-col justify-center items-center">
+        <Spinner className="h-10 w-10" />;
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div className="w-full h-screen flex flex-col justify-center items-center">
+        There was an error {error.message}
+      </div>
+    );
   }
 
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title);
+
   const handleShare = (platform) => {
-    ProductShare(imageUrl, productLink, platform);
+    ProductShare(pageUrl, pageTitle, platform);
   };
 
-  const imageUrl =
-    "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
-  const productLink =
-    "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
-
   // const handleOpen = (value) => setOpen(open === value ? 0 : value);
-
   const videoEmbedUrl = shopData.video1.replace("watch?v=", "embed/");
+
   return (
     <div className="bg-white">
       <div className="w-full lg:flex my-4">
         <div className="sm:w-full md:w-full lg:w-1/2 mx-auto">
-          <div className="w-full grid gap-4 mx-auto px-8 lg:pl-24">
-            <div className="mt-8">
-              <img
-                className="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
-                src={active}
-                alt=""
-              />
+          <div className="w-full grid gap-4 mx-auto px-4 md:px-8 lg:pl-24">
+            <div className="sm:mt-0 md:mt-8">
+              <Carousel
+                className="h-auto w-full max-w-full rounded-lg object-cover
+              object-center md:h-[480px]"
+              >
+                {shopData.imageUrl.map((src, index) => (
+                  <img
+                    key={index} // Each image needs a unique key
+                    src={src}
+                    alt={`image ${index + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                ))}
+              </Carousel>
             </div>
-            <div className="grid grid-cols-5 gap-4">
+            <div className="hidden md:grid grid-cols-5 gap-4">
               {shopData.imageUrl.map((imgsource, index) => (
                 <div key={index}>
                   <img
-                    onClick={() => setActive(imgsource)}
                     src={imgsource}
                     className="h-20 max-w-full cursor-pointer rounded-lg object-cover object-center"
                     alt="gallery-image"
@@ -226,6 +246,7 @@ export default function SingleProduct() {
             </div>
           </div>
         </div>
+
         <div className="sm:w-full px-6 md:w-full lg:w-1/2 py-8 sm:mx-auto lg:mx-auto lg:px-20">
           <div className="flex items-center mb-2">
             <p className="text-gray-600">Indie Stori</p>
@@ -238,7 +259,7 @@ export default function SingleProduct() {
           <p className="text-yellow-800 text-2xl py-2 lg:py-4">
             ★ ★ ★ ★ ★{" "}
             <span className="text-black opacity-60 text-lg lg:mx-4">
-              (4.9/5 stars on Amazon)
+              (4.9/5 stars)
             </span>
             <br />
             <a
@@ -246,7 +267,7 @@ export default function SingleProduct() {
               target="__blank"
               className="text-blue-400 cursor-pointer text-base my-4"
             >
-              Read reviews
+              Read reviews on Amazon
             </a>
           </p>
           <div className="flex justify-between my-2 sm:w-full lg:my-4 space-x-1">
@@ -256,7 +277,7 @@ export default function SingleProduct() {
                 src={noPreservative}
               />
               <p className="text-xs py-2 sm:text-lg text-center">
-                No Preservation
+                No Preservatives
               </p>
             </div>
             <div className="flex flex-col justify-center items-center p-1 w-1/4 h-full">
@@ -265,7 +286,7 @@ export default function SingleProduct() {
                 src={noArtifical}
               />
               <p className="text-xs py-2 sm:text-lg text-center">
-                Not Artificial
+                Not Artificial Color
               </p>
             </div>
             <div className="flex flex-col justify-center items-center p-1 w-1/4 h-full">
@@ -282,7 +303,9 @@ export default function SingleProduct() {
                 className="lg:w-16 lg:h-16 sm:h-24 sm:w-24 max-h-20 max-w-20 h-full w-full"
                 src={natural}
               />
-              <p className="text-xs py-2 sm:text-lg text-center">Natural</p>
+              <p className="text-xs py-2 sm:text-lg text-center">
+                100% Natural
+              </p>
             </div>
           </div>
 
@@ -295,7 +318,7 @@ export default function SingleProduct() {
             Category: <span className="text-black">{shopData.category}</span>
           </h2>
 
-          <div className="flex mb-4">
+          {/* <div className="flex mb-4">
             <p className="text-xl font-medium line-through opacity-60">
               {" "}
               Rs. {price}{" "}
@@ -303,51 +326,28 @@ export default function SingleProduct() {
             <h1 className="text-3xl  font-semibold mb-2 text-right w-4/5">
               Rs. <span className="text-pink-400">{discountPrice}</span>
             </h1>
-          </div>
-
-          <div className="bg-black px-4 py-2 w-max rounded-lg uppercase my-2 text-xs sm:px-6 sm:py-3 sm:text-sm md:px-8 md:py-4 md:text-base">
-            <a
-              className=" text-white animate-pulseOpacity"
-              href={shopData.video2}
-              target="_blank" // Corrected target attribute (use "_blank" instead of "__blank")
-              rel="noopener noreferrer" // Added for security reasons
-            >
-              Watch home test for purity
-            </a>
-          </div>
-
-          {/* weight change dialouge removed */}
-          {/* <div className="flex flex-col gap-4 my-4 text-xl">
-            <div className="flex gap-2">
-              <p>Weight:</p>
-              <div className="max-w-[250px]">
-                <Select
-                  label="Select weight"
-                  value={weight}
-                  onChange={(e) => handleWeightChange(e)}
-                >
-                  {shopData?.sizes.map((item, index) => (
-                    <Option key={index} value={item.size}>
-                      {item.size}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-            </div>
-            <div className="">
-              <p>Quantity:</p>
-              <div className="flex w-max gap-4 my-4">
-                <IconButton onClick={decrement} ripple={true}>
-                  <i className="fas fa-minus" />
-                </IconButton>
-                <p className="py-1">{productQuantity}</p>
-                <IconButton onClick={increment} ripple={false}>
-                  <i className="fas fa-plus" />
-                </IconButton>
-              </div>
-            </div>
           </div> */}
+          <div className="flex w-full justify-between items-center mb-4">
+            <p className="text-xl font-medium line-through opacity-60">
+              Rs. {price}
+            </p>
+            <h1 className="text-3xl font-semibold text-right">
+              Rs. <span className="text-pink-400">{discountPrice}</span>
+            </h1>
+          </div>
 
+          {isValidUrl(shopData.video2) && (
+            <div className="bg-black px-4 py-2 w-max rounded-lg uppercase my-2 text-xs sm:px-6 sm:py-3 sm:text-sm md:px-8 md:py-4 md:text-base">
+              <a
+                className="text-white animate-pulseOpacity"
+                href={shopData.video2}
+                target="_blank" // Corrected target attribute (use "_blank" instead of "__blank")
+                rel="noopener noreferrer" // Added for security reasons
+              >
+                Watch home test for purity
+              </a>
+            </div>
+          )}
           <div className="lg:flex pb-4 font-semibold items-center">
             <div className="flex items-center">
               <img className="h-8 w-8 mr-2" src={shippinngLogo} />
@@ -399,26 +399,13 @@ export default function SingleProduct() {
             <img className="w-8 h-8" src={VegIcon} />
             <p className="px-4">100% Veg</p>
           </div>
-
-          {/* <div className="socialLogo flex justify-start  pl-1 pt-4 items-center">
-          <p className="pr-2">Share on :</p>
-                {usersocialMediaLinks.map((social, index) => (
-                    <a
-                    key={index}
-                    href={social.href}
-                    className={`flex items-center justify-center md:justify-start size-8 text-md md:text-xl rounded-sm transform transition-transform duration-300 ease-in-out hover:scale-125 text-${social.color}`}
-                    >
-                    <i className={social.iconClass}></i>
-                    </a>
-                ))}
-              </div> */}
-
           <div className="socialLogo flex justify-start pl-1 pt-4 items-center">
             <p className="pr-2">Share on :</p>
             {usersocialMediaLinks.map((social, index) => (
               <button
                 key={index}
                 onClick={() => handleShare(social.platform)}
+                //onClick={handleShare}
                 className={`flex items-center justify-center md:justify-start size-8 text-md md:text-xl rounded-sm transform transition-transform duration-300 ease-in-out hover:scale-125 text-${social.color}`}
               >
                 <i className={social.iconClass}></i>
@@ -472,6 +459,7 @@ export default function SingleProduct() {
           <iframe
             className="w-full h-56 sm:h-96 md:h-screen"
             src={`${videoEmbedUrl}?autoplay=1`}
+            // src={`${videoEmbedUrl}`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -481,19 +469,14 @@ export default function SingleProduct() {
         </div>
       </section>
 
-      {/* Reviews */}
       <UserTestimonials />
-      {/* <div className="flex w-max mx-auto pt-4">
-        <h3 className="text-2xl">Reviews from</h3>
-        <img className="h-8 w-20 mx-4 mt-2" src={amazonlogo} />
-      </div>
-      <SingleReview /> */}
+
       <div className=" p-6 md:px-8 lg:px-12 ">
         <h3>Add a Review</h3>
         <form ref={form} className="space-y-4 mt-4">
           <div className="flex items-center space-x-4">
             <label className="font-bold">Rate this product?</label>
-            {[...Array(5)].map((_, i) => (
+            {/* {[...Array(5)].map((_, i) => (
               <i
                 key={i}
                 className={`fa-solid fa-star cursor-default ${
@@ -501,7 +484,7 @@ export default function SingleProduct() {
                   "text-gray-400"
                 }`}
               ></i>
-            ))}
+            ))} */}
           </div>
           <textarea
             name="user_message"

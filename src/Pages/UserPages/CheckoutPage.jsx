@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { auth } from "../../firebaseConfig";
 import { apiString } from "../../service/apicalls";
 import { clearCart } from "../../service/CartSlice";
+import React from "react";
 
 const CheckoutPage = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +29,12 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("these are the products",products);
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { id, value, name, type } = e.target;
@@ -54,8 +60,6 @@ const CheckoutPage = () => {
         }
       );
 
-
-
       const { razorpayOrderId, result } = razorpayOrderResponse.data;
       // const totalAmount = razorpayOrderResponse.data.result.totalAmount;
       const cashOnDeliveryCharges = import.meta.env
@@ -78,7 +82,7 @@ const CheckoutPage = () => {
             razorpaySignature: response.razorpay_signature,
           });
           alert("Payment successful!");
-          navigate("/")
+          navigate("/");
         },
         prefill: {
           name: `${OrderInfo.firstName} ${OrderInfo.lastName}`,

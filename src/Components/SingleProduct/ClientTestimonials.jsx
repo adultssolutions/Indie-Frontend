@@ -1,7 +1,7 @@
 import { Carousel } from "@material-tailwind/react";
 import SingleReviewCard from "./SingleReviewCard";
 import vijayImage from "../../assets/vijay.jpg";
-import smitaImage from "../../assets/smita.jpeg";
+import smitaImage from "../../assets/smitaSquare.jpg";
 
 export default function UserTestimonials({ className }) {
   return (
@@ -52,7 +52,7 @@ export default function UserTestimonials({ className }) {
             />
             <SingleReviewCard
               imageUrl={null}
-              username={"Amit Mandana"}
+              username={"Amit Mandhana"}
               usertext={
                 "I recently purchased the Himalayan Forest Honey from Indiestori, and I’m absolutely thrilled with the quality and packaging."
               }
