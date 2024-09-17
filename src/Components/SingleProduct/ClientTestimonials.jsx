@@ -52,7 +52,7 @@ export default function UserTestimonials({ className }) {
             />
             <SingleReviewCard
               imageUrl={null}
-              username={"Amit Mandhana"}
+              username={"Amit Mandhani"}
               usertext={
                 "I recently purchased the Himalayan Forest Honey from Indiestori, and I’m absolutely thrilled with the quality and packaging."
               }

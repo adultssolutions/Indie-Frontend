@@ -31,7 +31,7 @@ import noArtifical from "../assets/Noartificialflavour.png";
 import chemicalFree from "../assets/Chemicalfree.png";
 import natural from "../assets/100NAtural.png";
 import emailjs from "@emailjs/browser";
-
+import { Select, Option, IconButton } from "@material-tailwind/react";
 export default function SingleProduct() {
   const [shopData, setShopData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -286,7 +286,7 @@ export default function SingleProduct() {
                 src={noArtifical}
               />
               <p className="text-xs py-2 sm:text-lg text-center">
-                Not Artificial Color
+                No Artificial Color
               </p>
             </div>
             <div className="flex flex-col justify-center items-center p-1 w-1/4 h-full">
@@ -348,6 +348,38 @@ export default function SingleProduct() {
               </a>
             </div>
           )}
+
+          <div className="flex flex-col gap-4 my-4 text-xl">
+            {/* <div className="flex gap-2">
+              <p>Weight:</p>
+              <div className="max-w-[250px]">
+                <Select
+                  label="Select weight"
+                  value={weight}
+                  onChange={(e) => handleWeightChange(e)}
+                >
+                  {shopData?.sizes.map((item, index) => (
+                    <Option key={index} value={item.size}>
+                      {item.size}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+            </div> */}
+            <div className="">
+              <p>Quantity:</p>
+              <div className="flex w-max gap-4 my-4">
+                <IconButton onClick={decrement} ripple={true}>
+                  <i className="fas fa-minus" />
+                </IconButton>
+                <p className="py-1">{productQuantity}</p>
+                <IconButton onClick={increment} ripple={false}>
+                  <i className="fas fa-plus" />
+                </IconButton>
+              </div>
+            </div>
+          </div>
+
           <div className="lg:flex pb-4 font-semibold items-center">
             <div className="flex items-center">
               <img className="h-8 w-8 mr-2" src={shippinngLogo} />

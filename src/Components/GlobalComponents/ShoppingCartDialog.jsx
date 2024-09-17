@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import CartProduct from "../GlobalComponents/CartProduct";
 import {
   Button,
@@ -7,39 +7,41 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { useDispatch, useSelector } from 'react-redux';
-import { calculateTotals, removeItem, updateQuantity } from '../../service/CartSlice';
-import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from "react-redux";
+import {
+  calculateTotals,
+  removeItem,
+  updateQuantity,
+} from "../../service/CartSlice";
+import { useNavigate } from "react-router";
 
 export default function ShoppingCartDialog({ size, handleOpen }) {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
   const totals = useSelector((state) => state.cart.totals);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(calculateTotals());
   }, [products, dispatch]);
 
   const handleQuantityChange = (productId, delta) => {
-
-    dispatch(updateQuantity({ productId, quantity: delta ,}));
+    dispatch(updateQuantity({ productId, quantity: delta }));
   };
 
   const handleDelete = (id) => {
     console.log(id);
     dispatch(removeItem({ productId: id }));
   };
-  
-  function handleBuyNow(){
-    console.log("hello buy  now")
+
+  function handleBuyNow() {
+    console.log("hello buy  now");
   }
 
-  function handleCheckout(){
-    navigate('/checkout')
+  function handleCheckout() {
+    navigate("/checkout");
     handleOpen();
   }
-  
 
   return (
     <Dialog
@@ -54,27 +56,28 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
       size={size || "md"}
       handler={handleOpen}
     >
-      <DialogHeader><p className='px-4'>SHOPPING CART</p></DialogHeader>
+      <DialogHeader>
+        <p className="px-4">SHOPPING CART</p>
+      </DialogHeader>
       <DialogBody>
-        {products.length<1?
-        <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
-        <p>Add Products to your cart</p>
-      </div>
-        :
-        <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
-          {products.map(product => (
-            <CartProduct
-              key={product.productId}
-              product={product}
-              quantity={product.quantity}
-              onQuantityChange={handleQuantityChange}
-              onBuyNow={handleBuyNow}
-              onDelete={handleDelete}
-            />
-          ))}
-        </div>
-        }
-        
+        {products.length < 1 ? (
+          <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
+            <p>Add Products to your cart</p>
+          </div>
+        ) : (
+          <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
+            {products.map((product) => (
+              <CartProduct
+                key={product.productId}
+                product={product}
+                quantity={product.quantity}
+                onQuantityChange={handleQuantityChange}
+                onBuyNow={handleBuyNow}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
+        )}
       </DialogBody>
       <DialogFooter>
         <div className="w-full px-2 md:px-4">
@@ -115,14 +118,6 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
   );
 }
 
-
-
-
-
-
-
-
-
 // const [products, setProducts] = useState([]);
 
 //   const [totals, setTotals] = useState({
@@ -149,30 +144,27 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
 //   }, [products]);
 
 //   const handleQuantityChange = (productId, newQuantity) => {
-//     setProducts((prevProducts) => 
+//     setProducts((prevProducts) =>
 //       prevProducts
-//         .map((product) => 
-//           product.productId === productId 
-//             ? { ...product, quantity: product.quantity + newQuantity } 
+//         .map((product) =>
+//           product.productId === productId
+//             ? { ...product, quantity: product.quantity + newQuantity }
 //             : product
 //         )
 //         .filter((product) => product.quantity > 0) // Remove products with quantity less than 1
 //     );// Recalculate totals after updating the quantity
 //   };
-  
-
-    
 
 //   const handleBuyNow = (id) => {
 //     console.log(`Buy Now for product id: ${id}`);
 //   };
 
 //   const handleDelete = (id) => {
-//     setProducts((prevProducts) => 
+//     setProducts((prevProducts) =>
 //       prevProducts
-//         .map((product) => 
-//           product.productId === id 
-//             ? { ...product, quantity: product.quantity*0 } 
+//         .map((product) =>
+//           product.productId === id
+//             ? { ...product, quantity: product.quantity*0 }
 //             : product
 //         )
 //         .filter((product) => product.quantity > 0)

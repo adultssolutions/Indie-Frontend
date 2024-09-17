@@ -26,7 +26,7 @@ const CartProduct = ({
               variant="text"
               size="sm"
               color="black"
-              onClick={() => onQuantityChange(product.productId, -1, size)}
+              onClick={() => onQuantityChange(product.productId, -1)}
             >
               -
             </Button>
@@ -37,7 +37,7 @@ const CartProduct = ({
               variant="text"
               size="sm"
               color="black"
-              onClick={() => onQuantityChange(product.productId, 1, size)}
+              onClick={() => onQuantityChange(product.productId, 1)}
             >
               +
             </Button>
