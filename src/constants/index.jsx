@@ -259,7 +259,7 @@ const testimonials = [
     image: imagedemo,
     paragraph:
       "I recently purchased the Himalayan Forest Honey from Indiestori, and I’m absolutely thrilled with the quality and packaging.",
-    heading1: "Amit Mandana",
+    heading1: "Amit Mandhani",
     heading2: "",
   },
 ];

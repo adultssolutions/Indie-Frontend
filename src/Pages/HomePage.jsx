@@ -24,7 +24,9 @@ export default function HomePage() {
   return (
     <>
     <div className="flex justify-center items-center">
-      <CarouselDefault />
+      <a href="/shop">
+        <CarouselDefault />
+      </a>
     </div>
 
 
@@ -244,7 +246,9 @@ export default function HomePage() {
       <div className="flex flex-wrap justify-center gap-4 p-6 lg:justify-around">
         {categories.map((category, index) => (
           <div key={index} className="flex justify-center w-full sm:w-auto sm:text-lg">
-            <CircleHover category={category} />
+            <a href="/shop">
+              <CircleHover category={category} />
+            </a>
           </div>
         ))}
       </div>
