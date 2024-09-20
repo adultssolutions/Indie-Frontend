@@ -128,14 +128,14 @@ function App() {
             </p>
           ),
         },
-        {
-          path: "/blogs",
-          element: (
-            <p>
-              <BlogsPage />
-            </p>
-          ),
-        },
+        // {
+        //   path: "/blogs",
+        //   element: (
+        //     <p>
+        //       <BlogsPage />
+        //     </p>
+        //   ),
+        // },
         {
           path: "/singleblog",
           element: (
