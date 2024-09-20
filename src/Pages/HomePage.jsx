@@ -1,29 +1,18 @@
-import { Button } from "@material-tailwind/react";
+import { Button, IconButton } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 import Testimonials from "../Components/GlobalComponents/Testimonials";
 import CircleHover from "../Components/GlobalComponents/CircleHover";
-import CardDefault from "../Components/GlobalComponents/CardDefault";
 import CountUp from "../Components/GlobalComponents/CountUp";
 import ProductSection from "../Components/GlobalComponents/ProductSection";
-import ResponsiveCard from "../Components/GlobalComponents/ResponsiveCard";
-import ProductDefault from "../Components/GlobalComponents/ProductDefault";
-import BlogCard from "../Components/GlobalComponents/BlogCard";
 import CarouselDefault from "../Components/GlobalComponents/CarouselDefault";
 import {
   testimonials,
-  brandpartners,
-  slides,
   metricsData,
-  cards,
   cardsData,
   products,
-  blogData,
-  upcomingData,
   categories,
 } from "../constants";
-import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.jpg";
 import amazonlogo from "../assets/amazon.png"
 import HomeAboutUs from "../assets/HomeAboutUs.png"
 import Shop from "./Shop";
@@ -32,7 +21,6 @@ import { partnerhome } from "../constants";
 
 
 export default function HomePage() {
-  const displayedProducts = products.slice(0, 4);
   return (
     <>
     <div className="flex justify-center items-center">
@@ -167,18 +155,60 @@ export default function HomePage() {
         <h2 className="text-3xl text-pink-400 md:text-4xl font-semibold text-center my-6">
           -Brand Partners-
         </h2>
-        <Carousel 
-        prevArrow={() => (<div></div>)}
-        nextArrow={() => (<div></div>)}
-        navigation={() => (
-          <div>
-          </div>
+        <Carousel loop={true} autoplay={true} transition={{ duration: 2 }}  className=" rounded-xl"
+        prevArrow={({ handlePrev }) => (
+          <IconButton
+            variant="text"
+            color="white"
+            size="lg"
+            onClick={handlePrev}
+            className="!absolute top-2/4 left-4 -translate-y-2/4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-6 w-6 text-black"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </IconButton>
         )}
-        loop={true} autoplay={true} className=" rounded-xl">
+        nextArrow={({ handleNext }) => (
+          <IconButton
+            variant="text"
+            color="white"
+            size="lg"
+            onClick={handleNext}
+            className="!absolute top-2/4 !right-4 -translate-y-2/4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-6 w-6 text-black" 
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </IconButton>
+        )}
+        >
+
           {partnerhome.map((partner, index) => (
-            <div>
+            <div key={index} className="flex flex-col items-center h-full justify-center px-16">
               <img
-                key={index}
                 src={partner.href}
                 alt={partner.name}
                 className="rounded-xl h-full w-full max-h-96 object-contain object-center"
@@ -189,6 +219,8 @@ export default function HomePage() {
         </Carousel>
         
       </div>
+
+
 
       {/* Testimonials */}
 

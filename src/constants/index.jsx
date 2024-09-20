@@ -65,13 +65,13 @@ const partnerhome=[
   href: cleanharbors,
   },
   {
-  name: "N'fa bustone",
+  name: "Nfabustone",
   href: nfabustone,
   },
-  {
-  name: "MBG commodities Private Limited",
-  href: MBGlogo,
-  },
+  // {
+  // name: "MBG commodities Private Limited",
+  // href: MBGlogo,
+  // },
   {
   name: "IMT international",
   href: IMTlogo,
