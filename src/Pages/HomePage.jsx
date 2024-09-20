@@ -1,29 +1,18 @@
-import { Button } from "@material-tailwind/react";
+import { Button, IconButton } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 import Testimonials from "../Components/GlobalComponents/Testimonials";
 import CircleHover from "../Components/GlobalComponents/CircleHover";
-import CardDefault from "../Components/GlobalComponents/CardDefault";
 import CountUp from "../Components/GlobalComponents/CountUp";
 import ProductSection from "../Components/GlobalComponents/ProductSection";
-import ResponsiveCard from "../Components/GlobalComponents/ResponsiveCard";
-import ProductDefault from "../Components/GlobalComponents/ProductDefault";
-import BlogCard from "../Components/GlobalComponents/BlogCard";
 import CarouselDefault from "../Components/GlobalComponents/CarouselDefault";
 import {
   testimonials,
-  brandpartners,
-  slides,
   metricsData,
-  cards,
   cardsData,
   products,
-  blogData,
-  upcomingData,
   categories,
 } from "../constants";
-import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.jpg";
 import amazonlogo from "../assets/amazon.png"
 import HomeAboutUs from "../assets/HomeAboutUs.png"
 import Shop from "./Shop";
@@ -32,11 +21,12 @@ import { partnerhome } from "../constants";
 
 
 export default function HomePage() {
-  const displayedProducts = products.slice(0, 4);
   return (
     <>
     <div className="flex justify-center items-center">
-      <CarouselDefault />
+      <a href="/shop">
+        <CarouselDefault />
+      </a>
     </div>
 
 
@@ -52,9 +42,9 @@ export default function HomePage() {
         </div>
 
         <div className="p-4 lg:p-10 mx-auto text-justify lg:w-1/2 py-4 animate-slideInRight">
-          <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
+          {/* <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
             About us
-          </h3>
+          </h3> */}
           <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">
             What is Indie Stori ?
           </h1>
@@ -81,7 +71,7 @@ export default function HomePage() {
           </div>
           
           <Link to="/ourstori">
-            <Button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+            <Button size="lg" className="bg-blue-600 text-white py-4 px-8 rounded hover:bg-blue-700">
                 Our Stori
             </Button>
         </Link>
@@ -123,7 +113,7 @@ export default function HomePage() {
           {/* <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
             Products
           </h3> */}
-          <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl animate-pulseOpacity">
+          <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">
             Go native | Go Indie
           </h1>
         </div>
@@ -164,21 +154,63 @@ export default function HomePage() {
       {/* Brand Partners */}
 
       <div className="m-2 -mt-4">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center my-6">
+        <h2 className="text-3xl text-pink-400 md:text-4xl font-semibold text-center my-6">
           -Brand Partners-
         </h2>
-        <Carousel 
-        prevArrow={() => (<div></div>)}
-        nextArrow={() => (<div></div>)}
-        navigation={() => (
-          <div>
-          </div>
+        <Carousel loop={true} autoplay={true} transition={{ duration: 2 }}  className=" rounded-xl"
+        prevArrow={({ handlePrev }) => (
+          <IconButton
+            variant="text"
+            color="white"
+            size="lg"
+            onClick={handlePrev}
+            className="!absolute top-2/4 left-4 -translate-y-2/4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-6 w-6 text-black"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </IconButton>
         )}
-        loop={true} autoplay={true} className=" rounded-xl">
+        nextArrow={({ handleNext }) => (
+          <IconButton
+            variant="text"
+            color="white"
+            size="lg"
+            onClick={handleNext}
+            className="!absolute top-2/4 !right-4 -translate-y-2/4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-6 w-6 text-black" 
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </IconButton>
+        )}
+        >
+
           {partnerhome.map((partner, index) => (
-            <div>
+            <div key={index} className="flex flex-col items-center h-full justify-center px-16">
               <img
-                key={index}
                 src={partner.href}
                 alt={partner.name}
                 className="rounded-xl h-full w-full max-h-96 object-contain object-center"
@@ -189,6 +221,8 @@ export default function HomePage() {
         </Carousel>
         
       </div>
+
+
 
       {/* Testimonials */}
 
@@ -212,7 +246,9 @@ export default function HomePage() {
       <div className="flex flex-wrap justify-center gap-4 p-6 lg:justify-around">
         {categories.map((category, index) => (
           <div key={index} className="flex justify-center w-full sm:w-auto sm:text-lg">
-            <CircleHover category={category} />
+            <a href="/shop">
+              <CircleHover category={category} />
+            </a>
           </div>
         ))}
       </div>

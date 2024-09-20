@@ -82,7 +82,7 @@ const CheckoutPage = () => {
             razorpaySignature: response.razorpay_signature,
           });
           alert("Payment successful!");
-          navigate("/");
+          navigate("/thankyou");
         },
         prefill: {
           name: `${OrderInfo.firstName} ${OrderInfo.lastName}`,
@@ -429,8 +429,9 @@ const CheckoutPage = () => {
                     onChange={handleChange}
                   />
                   <label htmlFor="razorpay" className="ml-2">
-                    Razorpay
+                  Credit Card/Debit Card/UPI
                   </label>
+                  <img referrerpolicy="origin" src = "https://badges.razorpay.com/badge-dark.png" className="h-16 w-44 mt-2" alt = "Razorpay | Payment Gateway | Neobank"/>
                 </div>
               </div>
             </div>

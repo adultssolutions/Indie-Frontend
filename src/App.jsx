@@ -27,6 +27,7 @@ import ShippingPolicy from "./Pages/TermsPages/ShippingPolicy";
 import BlogsPage from "./Pages/Blogs";
 import SingleBlogPage from "./Pages/SingleBlogPage";
 import OrderPlacedPage from "./Pages/OrderPlacedPage";
+import ThankYouPage from "./Pages/Thankyou";
 
 function App() {
   const router = createBrowserRouter([
@@ -84,6 +85,10 @@ function App() {
           element: <CheckoutPage />,
         },
         {
+          path:"/thankyou",
+          element:<ThankYouPage/>
+        },
+        {
           path: "/cart",
           element: <ShoppingCartDialog />,
         },
@@ -123,14 +128,14 @@ function App() {
             </p>
           ),
         },
-        {
-          path: "/blogs",
-          element: (
-            <p>
-              <BlogsPage />
-            </p>
-          ),
-        },
+        // {
+        //   path: "/blogs",
+        //   element: (
+        //     <p>
+        //       <BlogsPage />
+        //     </p>
+        //   ),
+        // },
         {
           path: "/singleblog",
           element: (

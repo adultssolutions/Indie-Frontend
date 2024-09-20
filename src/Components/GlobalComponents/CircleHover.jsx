@@ -47,7 +47,7 @@ const CircleHover = ({ category }) => {
       </div>
     </div>
       <h2>{category.name}</h2>
-      <p>{category.size} </p>
+      {/* <p>{category.size} </p> */}
     </div>
   );
 };
