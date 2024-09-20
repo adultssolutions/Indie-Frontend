@@ -27,6 +27,7 @@ import ShippingPolicy from "./Pages/TermsPages/ShippingPolicy";
 import BlogsPage from "./Pages/Blogs";
 import SingleBlogPage from "./Pages/SingleBlogPage";
 import OrderPlacedPage from "./Pages/OrderPlacedPage";
+import ThankYouPage from "./Pages/Thankyou";
 
 function App() {
   const router = createBrowserRouter([
@@ -82,6 +83,10 @@ function App() {
         {
           path: "/checkout",
           element: <CheckoutPage />,
+        },
+        {
+          path:"/thankyou",
+          element:<ThankYouPage/>
         },
         {
           path: "/cart",

@@ -82,7 +82,7 @@ const CheckoutPage = () => {
             razorpaySignature: response.razorpay_signature,
           });
           alert("Payment successful!");
-          navigate("/");
+          navigate("/thankyou");
         },
         prefill: {
           name: `${OrderInfo.firstName} ${OrderInfo.lastName}`,
