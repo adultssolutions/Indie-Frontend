@@ -3,8 +3,12 @@ import MissionVision from "../assets/MissionVision.png";
 import OurStori from "../assets/OurStori.png";
 import { ourStoriInfo, team, partners } from "../constants";
 import TeamCard from "../Components/GlobalComponents/TeamCard";
+import { useEffect } from "react";
 
 export default function OurStoryPage() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       {/* DESCRIPTION */}

@@ -37,7 +37,7 @@ export default function Shop() {
   return (
     <>
       <div className="text-center py-6">
-        <h1 className="text-2xl md:text-4xl pb-3 md:pb-6 font-bold">
+        <h1 className="text-2xl md:text-4xl pb-3 px-3 md:px-0 md:pb-6 font-bold">
           Indigenous products from source to your homes!
         </h1>
         <div className="w-full ">

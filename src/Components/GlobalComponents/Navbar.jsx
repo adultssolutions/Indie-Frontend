@@ -7,14 +7,9 @@ import {
   List,
   ListItem,
 } from "@material-tailwind/react";
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ShoppingCartIcon,
-  UserIcon,
-} from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ShoppingCartIcon, UserIcon } from "@heroicons/react/24/solid";
+import { Navigate, useNavigate } from "react-router";
 
 import IndieLogo from "../../assets/HorizontalLogo.png";
 import ShoppingCartDialog from "./ShoppingCartDialog";
@@ -149,8 +144,9 @@ const navListMenuItems = [
 function NavList() {
   const [size, setSize] = useState(null);
   const loggedIn = localStorage.getItem("email");
+  const navigate = useNavigate();
 
-  const handleOpen = (value) => setSize(value) ;
+  const handleOpen = (value) => setSize(value);
   return (
     <>
       <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 lg:w-8/10 items-start">
@@ -178,7 +174,6 @@ function NavList() {
         </Typography>
         {/* for catagory dropdown in future */}
         {/* <NavListMenu /> */}
-
         <Typography
           as="a"
           href="/shop"
@@ -201,64 +196,22 @@ function NavList() {
             Connect
           </ListItem>
         </Typography>
-        {/* <Typography
-          as="a"
-          href="/blogs"
-          variant="paragraph"
-          color="blue-gray"
-          className="font-semibold text-blue-500"
-        >
-          <ListItem className="flex items-center gap-2 py-2 pr-4">
-            Blog
-          </ListItem> 
-        </Typography> */}
 
-        <div className="flex items-center">
-        <Typography
-          className="font-semibold bg-transparent hover:cursor-pointer shadow-none text-blue-500 pl-2 lg:ml-4"
-          onClick={() => handleOpen("xl")}
-        >
-          {React.createElement(ShoppingCartIcon, {
-            strokeWidth: 2,
-            className: "h-6 w-6",
-          })}
+        <Typography className="font-semibold text-blue-500">
+          <ListItem
+            onClick={() => {
+              loggedIn ? navigate("/userdashboard") : navigate("/login");
+            }}
+            className="flex items-center gap-2 py-2 pr-4"
+          >
+            Login
+          </ListItem>
         </Typography>
-
-        {loggedIn ? (
-          <Typography
-            as="a"
-            href={loggedIn ? "/userdashboard" : "/login"}
-            variant="paragraph"
-            color="blue-gray"
-            className="font-semibold text-green-400 py-2 ml-4"
-          >
-            {React.createElement(UserIcon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-            })}
-          </Typography>
-        ) : (
-          <Typography
-            as="a"
-            href={loggedIn ? "/userdashboard" : "/login"}
-            variant="paragraph"
-            color="blue-gray"
-            className="font-semibold text-blue-500 py-2 ml-4"
-          >
-            {React.createElement(UserIcon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-            })}
-          </Typography>
-        )}
-        </div>
-        
       </List>
       <ShoppingCartDialog size={size} handleOpen={handleOpen} />
     </>
   );
 }
-
 
 function NavList1() {
   const [size, setSize] = useState(null);
@@ -341,45 +294,44 @@ function NavList2() {
         </Typography> */}
 
         <div className="flex items-center">
-        <Typography
-          className="font-semibold bg-transparent hover:cursor-pointer shadow-none text-blue-500 pr-2 lg:ml-4"
-          onClick={() => handleOpen("xl")}
-        >
-          {React.createElement(ShoppingCartIcon, {
-            strokeWidth: 2,
-            className: "h-6 w-6",
-          })}
-        </Typography>
+          <Typography
+            className="font-semibold bg-transparent hover:cursor-pointer shadow-none text-blue-500 pr-2 lg:ml-4"
+            onClick={() => handleOpen("xl")}
+          >
+            {React.createElement(ShoppingCartIcon, {
+              strokeWidth: 2,
+              className: "h-6 w-6",
+            })}
+          </Typography>
 
-        {loggedIn ? (
-          <Typography
-            as="a"
-            href={loggedIn ? "/userdashboard" : "/login"}
-            variant="paragraph"
-            color="blue-gray"
-            className="font-semibold text-green-400 py-2 ml-4"
-          >
-            {React.createElement(UserIcon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-            })}
-          </Typography>
-        ) : (
-          <Typography
-            as="a"
-            href={loggedIn ? "/userdashboard" : "/login"}
-            variant="paragraph"
-            color="blue-gray"
-            className="font-semibold text-blue-500 py-2 ml-4"
-          >
-            {React.createElement(UserIcon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-            })}
-          </Typography>
-        )}
+          {loggedIn ? (
+            <Typography
+              as="a"
+              href={loggedIn ? "/userdashboard" : "/login"}
+              variant="paragraph"
+              color="blue-gray"
+              className="font-semibold text-green-400 py-2 ml-4"
+            >
+              {React.createElement(UserIcon, {
+                strokeWidth: 2,
+                className: "h-6 w-6",
+              })}
+            </Typography>
+          ) : (
+            <Typography
+              as="a"
+              href={loggedIn ? "/userdashboard" : "/login"}
+              variant="paragraph"
+              color="blue-gray"
+              className="font-semibold text-blue-500 py-2 ml-4"
+            >
+              {React.createElement(UserIcon, {
+                strokeWidth: 2,
+                className: "h-6 w-6",
+              })}
+            </Typography>
+          )}
         </div>
-        
       </List>
       <ShoppingCartDialog size={size} handleOpen={handleOpen} />
     </>
@@ -387,8 +339,10 @@ function NavList2() {
 }
 
 export function MegaMenuWithHover() {
+  const [size, setSize] = useState(null);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const handleOpen = (value) => setSize(value);
 
   const handleScroll = () => {
     if (window.scrollY > lastScrollY) {
@@ -423,21 +377,10 @@ export function MegaMenuWithHover() {
           visible ? "transform translate-y-0" : "transform -translate-y-full"
         }`}
       >
-        <div className="flex w-full items-center justify-between text-blue-500">
+        <div className="flex w-full items-center justify-between px-3 text-blue-500">
           <div className="hidden lg:block">
-          <NavList1 />
-          </div>
-          <Typography
-            as="a"
-            href="/"
-            variant="h6"
-            className=" cursor-pointer py-1.5 "
-          >
-            <img src={IndieLogo} className="h-20 w-36" />
-          </Typography>
-          <div className="hidden lg:block">
-            <NavList2/>
-          </div>
+            <NavList1 />
+          </div>{" "}
           <IconButton
             variant="text"
             color="blue-gray"
@@ -450,17 +393,36 @@ export function MegaMenuWithHover() {
               <Bars3Icon className="h-6 w-6" strokeWidth={2} />
             )}
           </IconButton>
+          <Typography
+            as="a"
+            href="/"
+            variant="h6"
+            className=" cursor-pointer py-1.5 "
+          >
+            <img src={IndieLogo} className="h-20 w-36" />
+          </Typography>
+          <div className="hidden lg:block">
+            <NavList2 />
+          </div>
+          <IconButton
+            variant="text"
+            color="blue-gray"
+            className="lg:hidden px-2"
+            onClick={() => handleOpen("xl")}
+          >
+            {React.createElement(ShoppingCartIcon, {
+              strokeWidth: 2,
+              className: "h-6 w-6",
+            })}
+          </IconButton>
         </div>
         <div className="pl-4">
-        <Collapse open={openNav}>
-          <NavList />
-        </Collapse>
+          <Collapse open={openNav}>
+            <NavList />
+          </Collapse>
         </div>
       </nav>
+      <ShoppingCartDialog size={size} handleOpen={handleOpen} />
     </>
   );
 }
-
-
- 
-    

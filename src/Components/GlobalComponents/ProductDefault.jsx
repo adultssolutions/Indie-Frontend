@@ -21,8 +21,6 @@ export default function ProductDefault({ productData }) {
   };
   const dispatch = useDispatch();
 
-
-
   const handleAddToCart = (
     productId,
     quantity,
@@ -33,13 +31,17 @@ export default function ProductDefault({ productData }) {
   ) => {
     // const { productId, quantity, name, price, imageUrl } = product;
     console.log(productId, quantity, name, discountprice, imageUrl);
-    dispatch(addItem({ productId, quantity, name, discountprice, imageUrl , size}));
+    dispatch(
+      addItem({ productId, quantity, name, discountprice, imageUrl, size })
+    );
     handleOpen("xl");
   };
 
-  const buyNow = (productId, quantity, name, discountprice, imageUrl ,size) => {
+  const buyNow = (productId, quantity, name, discountprice, imageUrl, size) => {
     dispatch(clearCart());
-    dispatch(addItem({ productId, quantity, name, discountprice, imageUrl ,size }));
+    dispatch(
+      addItem({ productId, quantity, name, discountprice, imageUrl, size })
+    );
     navigate("/checkout");
   };
 
@@ -49,9 +51,7 @@ export default function ProductDefault({ productData }) {
         const minDiscountPrice = Math.min(
           ...card.sizes.map((size) => size.discountPrice)
         );
-        const minPrice = Math.min(
-          ...card.sizes.map((size) => size.price)
-        );
+        const minPrice = Math.min(...card.sizes.map((size) => size.price));
         return (
           <Card
             key={card.productId}
@@ -64,6 +64,7 @@ export default function ProductDefault({ productData }) {
             >
               <img
                 src={card.imageUrl[0]}
+                //src={"https://picsum.photos/1280/720"}
                 alt="card-image"
                 className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
                 onClick={() => handleProductClick(card.id)}
@@ -91,13 +92,13 @@ export default function ProductDefault({ productData }) {
                 </Typography>
               </div>
               <p className="w-full text-left sm:text-left">{}</p>
-              <Typography
+              {/* <Typography
                 variant="small"
                 color="gray"
                 className="font-normal opacity-75"
               >
                 {card.description}
-              </Typography>
+              </Typography> */}
             </CardBody>
             <CardFooter className="pt-2 px-3 md:px-4 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3">
               <Button
@@ -110,7 +111,7 @@ export default function ProductDefault({ productData }) {
                     card.name,
                     minDiscountPrice,
                     card.imageUrl[0],
-                      card.sizes[0].size
+                    card.sizes[0].size
                   )
                 }
               >
@@ -126,7 +127,7 @@ export default function ProductDefault({ productData }) {
                     card.name,
                     minDiscountPrice,
                     card.imageUrl[0],
-                      card.sizes[0].size
+                    card.sizes[0].size
                   )
                 }
               >

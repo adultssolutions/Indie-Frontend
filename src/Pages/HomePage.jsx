@@ -1,5 +1,5 @@
 import { Button, IconButton } from "@material-tailwind/react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Testimonials from "../Components/GlobalComponents/Testimonials";
 import CircleHover from "../Components/GlobalComponents/CircleHover";
 import CountUp from "../Components/GlobalComponents/CountUp";
@@ -13,22 +13,21 @@ import {
   categories,
 } from "../constants";
 import img2 from "../assets/img2.jpg";
-import amazonlogo from "../assets/amazon.png"
-import HomeAboutUs from "../assets/HomeAboutUs.png"
+import amazonlogo from "../assets/amazon.png";
+import HomeAboutUs from "../assets/us.png";
+import HomeAboutUs2 from "../assets/us2.png";
 import Shop from "./Shop";
-import {Carousel} from "@material-tailwind/react";
+import { Carousel } from "@material-tailwind/react";
 import { partnerhome } from "../constants";
-
 
 export default function HomePage() {
   return (
     <>
-    <div className="flex justify-center items-center">
-      <a href="/shop">
-        <CarouselDefault />
-      </a>
-    </div>
-
+      <div className="flex justify-center items-center">
+        <a href="/shop">
+          <CarouselDefault />
+        </a>
+      </div>
 
       {/* ABOUT US  */}
 
@@ -36,7 +35,7 @@ export default function HomePage() {
         <div className="p-2 w-full lg:w-1/2 lg:p-0 animate-slideInLeft">
           <img
             className="w-full rounded-xl object-cover h-full mx-auto md:max-w-sm lg:max-w-lg"
-            src={HomeAboutUs}
+            src={HomeAboutUs2}
             alt="About us"
           />
         </div>
@@ -45,36 +44,34 @@ export default function HomePage() {
           {/* <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
             About us
           </h3> */}
-          <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">
-            What is Indie Stori ?
-          </h1>
           <p className="text-lg py-1 font-semibold md:text-2xl md:py-2">
-            We are Indie Stori. A seed in the forest on our way to becoming a tree. 
+            We are Indie Stori. A seed in the forest on our way to becoming a
+            tree.
           </p>
           <p className="text-customBrown py-2 text-md md:text-lg">
-          We are passionate towards improving the lives of every soul we touch. After working with multiple artisans and understanding the story of farmers, we  plan on leveraging India and bringing back the traditional methods imparted to us by our ancestors.
-          Our vision is to combine the culture and traditions from every corner of India and bring forward the best produce that's not even accessible to the people living in the same origin.
-
+            Imagine a situation where you nurture a mango tree for years but
+            when it starts bearing fruits someone else plucks it all away
+            leaving nothing for you or your family. Instead, you are handed over
+            the leftovers. How would that make you feel? This was our experience
+            and here began the journey of Indie Stori.
           </p>
 
           <div className="text-base py-2 space-y-4 md:space-x-6 lg:space-y-0 flex flex-col md:flex-row md:text-lg lg:py-4">
-            <div>
-              <h2 className="font-semibold">Why Indie Stori?
-              </h2>
-              <p>Indie Stori is more than just a brand of Organic products. Our Products are ethically sourced from the native communities living in a particular region.</p>
-            </div>
+            <div></div>
             {/* <div>
               <h2 className="font-semibold">Why Organic?</h2>
               <p>We're making room for self care today with plan.</p>
             </div> */}
-
           </div>
-          
+
           <Link to="/ourstori">
-            <Button size="lg" className="bg-blue-600 text-white py-4 px-8 rounded hover:bg-blue-700">
-                Our Stori
+            <Button
+              size="lg"
+              className="bg-blue-600 text-white py-4 px-8 rounded hover:bg-blue-700"
+            >
+              Our Stori
             </Button>
-        </Link>
+          </Link>
         </div>
       </div>
 
@@ -114,7 +111,7 @@ export default function HomePage() {
             Products
           </h3> */}
           <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">
-            Go native | Go Indie
+            Go Native | Go Indie
           </h1>
         </div>
 
@@ -133,14 +130,14 @@ export default function HomePage() {
       </div>
 
       <div className="flex w-max mx-auto sm:my-8 pb-8 -mt-10">
-          <h3 className="text-2xl mt-16 lg:mt-2">Also available on</h3>
-          <img className="h-8 w-20 mx-4 mt-16 lg:mt-2" src={amazonlogo}/>
+        <h3 className="text-2xl mt-16 lg:mt-2">Also available on</h3>
+        <img className="h-8 w-20 mx-4 mt-16 lg:mt-2" src={amazonlogo} />
       </div>
 
       <section className="text-gray-600 body-font w-full">
         <div className="mx-auto flex py-6 items-center justify-center w-full flex-col">
           <iframe
-            className="w-full h-56 sm:h-96 md:h-screen" 
+            className="w-full h-56 sm:h-96 md:h-screen"
             src="https://www.youtube.com/embed/geyYhCGAEC4?si=Kf5N1L84B76UAg4X"
             title="YouTube video player"
             frameBorder="0"
@@ -157,72 +154,77 @@ export default function HomePage() {
         <h2 className="text-3xl text-pink-400 md:text-4xl font-semibold text-center my-6">
           -Brand Partners-
         </h2>
-        <Carousel loop={true} autoplay={true} transition={{ duration: 2 }}  className=" rounded-xl"
-        prevArrow={({ handlePrev }) => (
-          <IconButton
-            variant="text"
-            color="white"
-            size="lg"
-            onClick={handlePrev}
-            className="!absolute top-2/4 left-4 -translate-y-2/4"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-6 w-6 text-black"
+        <Carousel
+          loop={true}
+          autoplay={true}
+          transition={{ duration: 2 }}
+          className=" rounded-xl"
+          prevArrow={({ handlePrev }) => (
+            <IconButton
+              variant="text"
+              color="white"
+              size="lg"
+              onClick={handlePrev}
+              className="!absolute top-2/4 left-4 -translate-y-2/4"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
-            </svg>
-          </IconButton>
-        )}
-        nextArrow={({ handleNext }) => (
-          <IconButton
-            variant="text"
-            color="white"
-            size="lg"
-            onClick={handleNext}
-            className="!absolute top-2/4 !right-4 -translate-y-2/4"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-6 w-6 text-black" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6 text-black"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                />
+              </svg>
+            </IconButton>
+          )}
+          nextArrow={({ handleNext }) => (
+            <IconButton
+              variant="text"
+              color="white"
+              size="lg"
+              onClick={handleNext}
+              className="!absolute top-2/4 !right-4 -translate-y-2/4"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-          </IconButton>
-        )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6 text-black"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </IconButton>
+          )}
         >
-
           {partnerhome.map((partner, index) => (
-            <div key={index} className="flex flex-col items-center h-full justify-center px-16">
+            <div
+              key={index}
+              className="flex flex-col items-center h-full justify-center px-16"
+            >
               <img
                 src={partner.href}
                 alt={partner.name}
                 className="rounded-xl h-full w-full max-h-96 object-contain object-center"
               />
-              <p className="text-center py-4 text-xl md:text-3xl">{partner.name}</p>
+              <p className="text-center py-4 text-xl md:text-3xl">
+                {partner.name}
+              </p>
             </div>
-        ))}
+          ))}
         </Carousel>
-        
       </div>
-
-
 
       {/* Testimonials */}
 
@@ -240,19 +242,22 @@ export default function HomePage() {
       {/* Shop By Category  */}
 
       <div className="p-4 bg-pink-100 bg-opacity-50 border-y-4 border-pink-500 py-8">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mt-8">
-        Shop By Category
-      </h2>
-      <div className="flex flex-wrap justify-center gap-4 p-6 lg:justify-around">
-        {categories.map((category, index) => (
-          <div key={index} className="flex justify-center w-full sm:w-auto sm:text-lg">
-            <a href="/shop">
-              <CircleHover category={category} />
-            </a>
-          </div>
-        ))}
+        <h2 className="text-3xl md:text-4xl font-bold text-center mt-8">
+          Shop By Category
+        </h2>
+        <div className="flex flex-wrap justify-center gap-4 p-6 lg:justify-around">
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className="flex justify-center w-full sm:w-auto sm:text-lg"
+            >
+              <a href="/shop">
+                <CircleHover category={category} />
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
 
       {/* Best Seller */}
       {/* <div className="text-center pt-8 ">
@@ -261,10 +266,11 @@ export default function HomePage() {
         </h1>
       </div> */}
 
-
       {/* <Card/> */}
       <div className="py-6">
-      <h2 className="text-xl text-center py-6 text-pink-400">~ Products ~</h2>
+        <h2 className="text-xl text-center py-6 text-pink-400">
+          ~ Products People Love ~
+        </h2>
         <Shop />
       </div>
 
@@ -274,8 +280,10 @@ export default function HomePage() {
         <div className="p-2 w-full lg:w-1/2 lg:p-0 ">
           <img
             className="w-full rounded-xl
-        object-cover h-96 mx-auto md:max-w-sm lg:p- lg:max-w-lg "
-            src={img2}
+            object-fit 
+         h-96 mx-auto lg:w-full md:max-w-sm lg:p-0 lg:max-w-lg object-fit "
+            //src={"https://picsum.photos/1280/720"}
+            src={HomeAboutUs}
             alt="About us"
           />
         </div>
@@ -288,13 +296,12 @@ export default function HomePage() {
             Purpose over profits
           </h1>
           <p className="text-customBrown py-2 text-md md:text-lg">
-            Bringing the finest produce from different part of India directly to your homes, our vision is to enhance the life of every farmer and artisan we meet along the way. Our products are carefully made using the highest quality of equipment and skills. We envision a future in which the whole world would one day see the beauty of India.
-            {/* <br />
-            <br />
-            Organic Foods and Café is a family run company that runs organic
-            super markets and cafés selling fresh organic and biodynamic food,
-            supplers, skincare, cosmetics, baby items and household cleaning
-            products. We have 5 shops in Dubai – on Sheikh Zayed Road. */}
+            Bringing the finest produce from different parts of India directly
+            to your homes, our vision is to enhance the life of every farmer and
+            artisan we meet along the way. Our products are carefully made using
+            ancient sustainable techniques by skilled humans. We envision a
+            future in which the whole world would one day see the beauty of
+            India.
           </p>
         </div>
       </div>
