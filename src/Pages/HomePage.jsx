@@ -52,9 +52,9 @@ export default function HomePage() {
         </div>
 
         <div className="p-4 lg:p-10 mx-auto text-justify lg:w-1/2 py-4 animate-slideInRight">
-          <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
+          {/* <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
             About us
-          </h3>
+          </h3> */}
           <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">
             What is Indie Stori ?
           </h1>
@@ -81,7 +81,7 @@ export default function HomePage() {
           </div>
           
           <Link to="/ourstori">
-            <Button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+            <Button size="lg" className="bg-blue-600 text-white py-4 px-8 rounded hover:bg-blue-700">
                 Our Stori
             </Button>
         </Link>
@@ -123,7 +123,7 @@ export default function HomePage() {
           {/* <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">
             Products
           </h3> */}
-          <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl animate-pulseOpacity">
+          <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">
             Go native | Go Indie
           </h1>
         </div>
@@ -164,7 +164,7 @@ export default function HomePage() {
       {/* Brand Partners */}
 
       <div className="m-2 -mt-4">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center my-6">
+        <h2 className="text-3xl text-pink-400 md:text-4xl font-semibold text-center my-6">
           -Brand Partners-
         </h2>
         <Carousel 
