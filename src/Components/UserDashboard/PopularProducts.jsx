@@ -93,7 +93,7 @@ export default function PopularProducts() {
           </Typography>
         </div>
         <div className="divide-y divide-gray-200">
-          {productData.slice(0,3).map(({ id,name, email, price, imageUrl }, index) => (
+          {productData.slice(0,3).map(({ id,name, email, sizes, imageUrl }, index) => (
             <div
               key={index}
               className="flex items-center justify-between pb-3 pt-3 last:pb-0 hover:cursor-pointer"
@@ -111,7 +111,7 @@ export default function PopularProducts() {
                 </div>
               </div>
               <Typography color="blue-gray" variant="h6">
-                Rs. {price}
+                Rs. {sizes[0].discountPrice}
               </Typography>
             </div>
           ))}
