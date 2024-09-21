@@ -28,8 +28,15 @@ const CheckoutPage = () => {
   const totals = useSelector((state) => state.cart.totals);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isCashonDel, setIsCashonDel] = useState(true);
+
+  
 
   React.useEffect(() => {
+    if(products.length<1){
+      navigate("/shop");
+    }
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -44,6 +51,7 @@ const CheckoutPage = () => {
     } else {
       setFormData({ ...formData, [id]: value });
     }
+    
   };
 
   const handlePayment = async (orderData, paymentMethod) => {
@@ -148,20 +156,19 @@ const CheckoutPage = () => {
       total: totals.total,
     };
 
-    // if (formData.paymentMethod === "cashOnDelivery") {
-    //   try {
-    //     await axios.post(apiString+'/orders/createorder', orderData);
-    //     alert("Order placed successfully!");
-    //     dispatch(clearCart());
-    //     navigate('/shop');
-    //   localStorage.removeItem("cartState");
+    if (formData.paymentMethod === "cashOnDelivery") {
+      try {
+        await axios.post(apiString+'/orders/createorder', orderData);
+        dispatch(clearCart());
+        navigate('/thankyou');
+      localStorage.removeItem("cartState");
 
-    //   } catch (error) {
-    //     console.error("Error placing order:", error);
-    //   }
-    // } else {
+      } catch (error) {
+        console.error("Error placing order:", error);
+      }
+    } else {
     handlePayment(orderData, formData.paymentMethod);
-    // }
+    }
   };
 
   return (
@@ -372,35 +379,48 @@ const CheckoutPage = () => {
             <h2 className="text-lg font-bold mb-4">Your order</h2>
             <ul className="mb-4">
               {products.map((product) => (
-                <li key={product.productId} className="flex justify-between">
-                  <span className="w-1/2">
-                    {product.name} x {product.quantity}
-                  </span>
+                <li key={product.productId} className="flex justify-between my-2">
+                  <span className="w-3/4">{product.name}</span>
                   <span className="w-1/4 text-right">
-                    Rs. {product.discountprice}
+                    ₹{product.discountprice} x {product.quantity}
                   </span>
-                  <span className="w-1/4 text-right">
+                  {/* <span className="w-1/4 text-right">
                     ₹{product.discountprice * product.quantity}
-                  </span>
+                  </span> */}
                 </li>
               ))}
             </ul>
+            <div className="h-[2px] w-full bg-black px-2  mb-4"></div>
             <div className="flex justify-between font-bold">
               <span>Net Total</span>
               <span>Rs. {totals.netTotal}</span>
             </div>
             <div className="flex justify-between font-bold">
               <span>Taxes</span>
-              <span>Rs. {totals.taxes}</span>
+              <span>Rs.  { (totals.taxes).toFixed(2) }</span>
             </div>
             <div className="flex justify-between font-bold">
               <span>Shipping Charges</span>
               <span>Rs. {totals.shippingCharges}</span>
             </div>
-            <div className="flex justify-between font-bold">
-              <span>Gross Total</span>
-              <span>Rs. {totals.total}</span>
-            </div>
+            {isCashonDel ? (
+              <>
+                <div className="flex justify-between font-bold">
+                  <span>Cash on Delivery Charges</span>
+                  <span>Rs. 25</span>
+                </div>
+                <div className="flex justify-between font-bold">
+                  <span>Gross Total</span>
+                  <span>Rs. {totals.total + 25}</span>
+                </div>
+              </>
+            ) : (
+              <div className="flex justify-between font-bold">
+                <span>Gross Total</span>
+                <span>Rs. {totals.total}</span>
+              </div>
+            )}
+
             <div className="mt-4">
               <label className="block mb-1 font-bold" htmlFor="paymentMethod">
                 Payment method
@@ -413,7 +433,11 @@ const CheckoutPage = () => {
                     name="paymentMethod"
                     value="cashOnDelivery"
                     checked={formData.paymentMethod === "cashOnDelivery"}
-                    onChange={handleChange}
+                    // onChange={handleChange}
+                    onChange = {(event) => {
+                      handleChange(event); // Call the existing handleChange
+                      setIsCashonDel(true) // Call the new function
+                    }}
                   />
                   <label htmlFor="cashOnDelivery" className="ml-2">
                     Cash on delivery
@@ -426,12 +450,20 @@ const CheckoutPage = () => {
                     name="paymentMethod"
                     value="razorpay"
                     checked={formData.paymentMethod === "razorpay"}
-                    onChange={handleChange}
+                    onChange = {(event) => {
+                      handleChange(event); // Call the existing handleChange
+                      setIsCashonDel(false) // Call the new function
+                    }}
                   />
                   <label htmlFor="razorpay" className="ml-2">
-                  Credit Card/Debit Card/UPI
+                    Credit Card/Debit Card/UPI
                   </label>
-                  <img referrerpolicy="origin" src = "https://badges.razorpay.com/badge-dark.png" className="h-16 w-44 mt-2" alt = "Razorpay | Payment Gateway | Neobank"/>
+                  <img
+                    referrerPolicy="origin"
+                    src="https://badges.razorpay.com/badge-dark.png"
+                    className="h-16 w-44 mt-2"
+                    alt="Razorpay | Payment Gateway | Neobank"
+                  />
                 </div>
               </div>
             </div>
