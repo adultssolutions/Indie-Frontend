@@ -64,7 +64,7 @@ export default function ProductDefault({ productData }) {
             >
               <img
                 src={card.imageUrl[0]}
-                //src={"https://picsum.photos/1280/720"}
+                //src={https://picsum.photos/600/300"}
                 alt="card-image"
                 className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
                 onClick={() => handleProductClick(card.id)}
