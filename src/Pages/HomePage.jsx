@@ -231,7 +231,7 @@ export default function HomePage() {
 
       <div className="my-4  space-y-4 sm:p-6 sm:space-y-8 xl:my-16">
         <h2 className="text-3xl md:text-4xl font-semibold text-center my-8 lg:my-12">
-          -Client’s testimonial-
+          -People Love Us-
         </h2>
         <Testimonials
           autoSlide={true}

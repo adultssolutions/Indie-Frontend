@@ -90,9 +90,9 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
             </div>
             <div>
               <p>Rs. {totals.netTotal}</p>
-              <p>Rs. {totals.taxes}</p>
+              <p>Rs. {(totals.taxes).toFixed(2) }</p>
               <p>Rs. {totals.shippingCharges}</p>
-              <p>Rs. {totals.total}</p>
+              <p>Rs. {(totals.total).toFixed(2)}</p>
             </div>
           </div>
           <div className="text-right pt-4">
