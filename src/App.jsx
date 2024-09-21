@@ -85,8 +85,8 @@ function App() {
           element: <CheckoutPage />,
         },
         {
-          path:"/thankyou",
-          element:<ThankYouPage/>
+          path: "/thankyou",
+          element: <ThankYouPage />,
         },
         {
           path: "/cart",
@@ -156,6 +156,7 @@ function App() {
     },
   ]);
 
+  //return
   return <RouterProvider router={router} />;
 }
 

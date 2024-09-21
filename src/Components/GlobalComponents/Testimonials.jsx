@@ -31,20 +31,18 @@ export default function Testimonials({
   const testimonialsExtended = [...testimonials];
 
   // Calculate the total number of slides
-  const totalSlides = Math.ceil(testimonialsExtended.length / testimonialsToShow);
+  const totalSlides = Math.ceil(
+    testimonialsExtended.length / testimonialsToShow
+  );
 
   // Handle previous button click
   const prev = () => {
-    setCurr((prevCurr) =>
-      prevCurr === 0 ? totalSlides - 1 : prevCurr - 1
-    );
+    setCurr((prevCurr) => (prevCurr === 0 ? totalSlides - 1 : prevCurr - 1));
   };
 
   // Handle next button click
   const next = () => {
-    setCurr((prevCurr) =>
-      prevCurr === totalSlides - 1 ? 0 : prevCurr + 1
-    );
+    setCurr((prevCurr) => (prevCurr === totalSlides - 1 ? 0 : prevCurr + 1));
   };
 
   // Handle dot click
@@ -64,7 +62,10 @@ export default function Testimonials({
         className="flex transition-transform duration-500 ease-out"
         style={{
           transform: `translateX(-${curr * (100 / testimonialsToShow)}%)`,
-          width: `${(totalSlides / (testimonialsExtended.length / testimonialsToShow)) * 100}%`,
+          width: `${
+            (totalSlides / (testimonialsExtended.length / testimonialsToShow)) *
+            100
+          }%`,
         }}
       >
         {testimonialsExtended.map((testimonial, index) => (
@@ -77,11 +78,13 @@ export default function Testimonials({
               <img
                 src={testimonial.image}
                 alt={`Testimonial ${index}`}
-                className="size-24 sm:size-28 object-contain rounded-full"
+                className="size-24 sm:size-28 object-cover rounded-full"
               />
             </div>
 
-            <p className="text-center text-gray-700 mt-2 p-4 md:text-xl lg:text-xl">{testimonial.paragraph}</p>
+            <p className="text-center text-gray-700 mt-2 p-4 md:text-xl lg:text-xl">
+              {testimonial.paragraph}
+            </p>
             <div className="text-center">
               <h3 className="text-xl font-semibold">{testimonial.heading1}</h3>
               <h3 className="text-lg font-serif">{testimonial.heading2}</h3>
@@ -95,7 +98,9 @@ export default function Testimonials({
         {Array.from({ length: totalSlides }).map((_, index) => (
           <button
             key={index}
-            className={`h-3 w-3 rounded-full ${curr === index ? 'bg-gray-800' : 'bg-gray-400'}`}
+            className={`h-3 w-3 rounded-full ${
+              curr === index ? "bg-gray-800" : "bg-gray-400"
+            }`}
             onClick={() => goToSlide(index)}
           />
         ))}

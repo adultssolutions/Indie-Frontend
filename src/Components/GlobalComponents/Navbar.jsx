@@ -10,6 +10,7 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon, UserIcon } from "@heroicons/react/24/solid";
 import { Navigate, useNavigate } from "react-router";
+import shippinngLogo from "../../assets/delivery.png";
 
 import IndieLogo from "../../assets/HorizontalLogo.png";
 import ShoppingCartDialog from "./ShoppingCartDialog";
@@ -372,10 +373,27 @@ export function MegaMenuWithHover() {
 
   return (
     <>
+      <div className="flex gap-4 max-sm:flex-col items-center justify-center text-center bg-blue-600 text-white px-6 py-4 font-[sans-serif]">
+        {/* <img className="h-8 w-8 mr-2" src={shippinngLogo} />
+        <p className="my-2">Free shipping on any 2 or more items</p> */}
+        <p className="text-base text-lg">
+          Free shipping on any 2 or more items !
+        </p>
+
+        {/* <div className="flex gap-2">
+          <button
+            type="button"
+            className="bg-white text-blue-500 py-2.5 px-5 rounded text-sm hover:underline"
+          >
+            Shop
+          </button>
+        </div> */}
+      </div>
       <nav
-        className={`mx-auto sm:px-8 lg:px-36 xl:px-56 bg-white foxed bg-opacity-80 w-full py-1 z-50 sticky top-0 transition-transform duration-300 ${
-          visible ? "transform translate-y-0" : "transform -translate-y-full"
-        }`}
+        className={`sm:px-8 lg:px-36 xl:px-56 bg-white foxed bg-opacity-80 w-full py-1 z-50 sticky
+          top-0 transition-transform duration-300 ${
+            visible ? "transform translate-y-0" : "transform -translate-y-full"
+          }`}
       >
         <div className="flex w-full items-center justify-between px-3 text-blue-500">
           <div className="hidden lg:block">

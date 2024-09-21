@@ -467,7 +467,7 @@ export default function SingleProduct() {
             className="lg:w-48 lg:w-54 w-20  object-cover lg:px-8 "
             src={makeinindia}
           />
-          <p className="w-3/4 text-center text-xs md:text-lg">Made In India</p>
+          <p className="w-3/4 text-center text-xs md:text-lg">Make In India</p>
         </div>
         <div className="flex flex-col gap-2 items-center ">
           <img

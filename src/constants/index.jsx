@@ -23,8 +23,11 @@ import redrhino from "../assets/redrhino.png";
 import peopleprocess from "../assets/peopleprocess.jpg";
 import MBGlogo from "../assets/MBGlogo.png";
 import vijayImage from "../assets/vijay.jpg";
-import smitaImage from "../assets/smita.jpeg";
+import smitaImage from "../assets/smitaSquare.jpg";
 import imagedemo from "../assets/imagedemo.png";
+import turmeric from "../assets/turmeric.jpg";
+import honey from "../assets/honey.jpg";
+import salt from "../assets/salt.jpg";
 
 const categories = [
   {
@@ -199,6 +202,7 @@ const cardsData = [
     textColor: "pink-400",
     title: "Get 14 percent off on Indigenious Turmeric",
     description: "Turmeric as rare as seeing a tiger in the forest!",
+    backgroundImage: turmeric,
   },
   {
     bgColor: "white",
@@ -207,6 +211,7 @@ const cardsData = [
     title: "Get 10 percent off on Indigenious Honey",
     description:
       "Sourced directly from forests around Jim Corbett National Park.",
+    backgroundImage: honey,
   },
   {
     bgColor: "pink-400",
@@ -215,6 +220,7 @@ const cardsData = [
     title: "Get 10 percent off on Indigenious Flavoured Salt",
     description:
       "Salt made by mothers, not by Machines. 0 preservatives, hand ground and prepared for 2 months.",
+    backgroundImage: salt,
   },
 ];
 

@@ -124,6 +124,7 @@ export default function HomePage() {
               buttonColor={card.buttonColor}
               title={card.title}
               description={card.description}
+              backgroundImage={card.backgroundImage}
             />
           ))}
         </div>
