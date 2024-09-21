@@ -2,23 +2,23 @@ export default function ProductShare(pageUrl, pageTitle, platform) {
   const message = "Check out this product from Indie-Stori! ";
 
   const shareUrls = {
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${(
       pageUrl
-    )}&quote=${encodeURIComponent(message + pageTitle)}`,
-    twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    )}&quote=${(message + pageTitle)}`,
+    twitter: `https://twitter.com/intent/tweet?text=${(
       message + pageTitle
-    )}&url=${encodeURIComponent(pageUrl)}`,
-    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+    )}&url=${(pageUrl)}`,
+    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${(
       pageUrl
-    )}&title=${encodeURIComponent(pageTitle)}&summary=${encodeURIComponent(
+    )}&title=${(pageTitle)}&summary=${(
       message
     )}`,
-    whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(
-      message + pageTitle + "%20" + pageUrl
+    whatsapp: `https://api.whatsapp.com/send?text=${(
+      message + pageUrl
     )}`,
-    email: `mailto:?subject=${encodeURIComponent(
+    email: `mailto:?subject=${(
       pageTitle
-    )}&body=${encodeURIComponent(message + pageUrl)}`,
+    )}&body=${(message + pageUrl)}`,
   };
 
   switch (platform) {

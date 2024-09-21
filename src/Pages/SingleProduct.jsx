@@ -203,8 +203,8 @@ export default function SingleProduct() {
     );
   }
 
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.title);
+  const pageUrl = (window.location.href);
+  const pageTitle = (document.title);
 
   const handleShare = (platform) => {
     ProductShare(pageUrl, pageTitle, platform);

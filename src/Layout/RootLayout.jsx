@@ -5,7 +5,7 @@ import { MegaMenuWithHover } from "../Components/GlobalComponents/Navbar";
 export default function Rootlayout() {
   return (
     <>
-     
+           
       <MegaMenuWithHover />
 
       <Outlet />
