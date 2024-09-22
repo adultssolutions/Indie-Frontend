@@ -57,7 +57,7 @@
 
 // export default ProductSection;
 
-const ProductSection = ({ buttonColor, textColor, backgroundImage }) => {
+const ProductSection = ({ buttonColor, textColor, backgroundImage,redLink }) => {
   return (
     // <div
     //   className={`flex h-[300px] flex-col items-center justify-between p-8 text-${textColor} w-full rounded-md group transition-all duration-700 ease-in-out bg-cover  bg-center`}
@@ -93,6 +93,7 @@ const ProductSection = ({ buttonColor, textColor, backgroundImage }) => {
       <div className="flex-grow" />
       {/* This empty div takes up space to push the button down */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
+        <a href={redLink}>
         <button
           className={`px-4 py-1 mt-4 text-${textColor} text-md rounded-full relative transition-all duration-300 ease-in-out bg-${buttonColor} group-hover:pr-8`}
         >
@@ -100,7 +101,7 @@ const ProductSection = ({ buttonColor, textColor, backgroundImage }) => {
           <i
             className={`fa-solid fa-arrow-right absolute text-${textColor} right-2 top-1/2 transform -translate-y-1/2 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100`}
           ></i>
-        </button>
+        </button></a>
       </div>
     </div>
   );

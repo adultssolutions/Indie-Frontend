@@ -1,3 +1,4 @@
+import { Button, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 
 export default function UsesSection({
@@ -59,7 +60,7 @@ export default function UsesSection({
           <select
             value={activeTab}
             onChange={(e) => setActiveTab(e.target.value)}
-            className=" mb-4 p-2 px-3 border-gray-900 border-2 w-full rounded-lg  text-black font-semibold"
+            className=" mb-4 p-2 pr-4 mr-2 border-gray-900 border-2 w-full rounded-lg  text-black font-semibold"
           >
             {data.map(({ label, value }) => (
               <option key={value} value={value} className="bg-gray-200 ">

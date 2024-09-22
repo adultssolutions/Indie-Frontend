@@ -203,6 +203,7 @@ const cardsData = [
     title: "Get 14 percent off on Indigenious Turmeric",
     description: "Turmeric as rare as seeing a tiger in the forest!",
     backgroundImage: turmeric,
+    Redlink: "/shop/1"
   },
   {
     bgColor: "white",
@@ -212,6 +213,7 @@ const cardsData = [
     description:
       "Sourced directly from forests around Jim Corbett National Park.",
     backgroundImage: honey,
+    Redlink: "/shop/7"
   },
   {
     bgColor: "pink-400",
@@ -221,6 +223,7 @@ const cardsData = [
     description:
       "Salt made by mothers, not by Machines. 0 preservatives, hand ground and prepared for 2 months.",
     backgroundImage: salt,
+    Redlink: "/shop/5"
   },
 ];
 

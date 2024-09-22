@@ -12,7 +12,6 @@ import {
   products,
   categories,
 } from "../constants";
-import img2 from "../assets/img2.jpg";
 import amazonlogo from "../assets/amazon.png";
 import HomeAboutUs from "../assets/us.png";
 import HomeAboutUs2 from "../assets/us2.png";
@@ -28,9 +27,7 @@ export default function HomePage() {
   return (
     <>
       <div className="flex justify-center items-center">
-        <a href="/shop">
           <CarouselDefault />
-        </a>
       </div>
 
       {/* ABOUT US  */}
@@ -129,6 +126,7 @@ export default function HomePage() {
               title={card.title}
               description={card.description}
               backgroundImage={card.backgroundImage}
+              redLink={card.Redlink}
             />
           ))}
         </div>
