@@ -373,12 +373,10 @@ export function MegaMenuWithHover() {
 
   return (
     <>
-    <div className="flex z-50 sticky gap-4 max-sm:flex-col items-center justify-center text-center bg-blue-600 text-white px-6 font-[sans-serif]">
+      <div className="flex z-50 sticky gap-4 max-sm:flex-col items-center justify-center text-center bg-pink-400 text-white px-6 font-[sans-serif]">
         {/* <img className="h-8 w-8 mr-2" src={shippinngLogo} />
         <p className="my-2">Free shipping on any 2 or more items</p> */}
-        <p className="text-lg py-2">
-          Free shipping on any 2 or more items !
-        </p>
+        <p className="text-lg py-2">Free shipping on any 2 or more items !</p>
 
         {/* <div className="flex gap-2">
           <button
@@ -395,7 +393,6 @@ export function MegaMenuWithHover() {
             visible ? "transform translate-y-0" : "transform -translate-y-full"
           }`}
       >
-        
         <div className="flex w-full items-center justify-between px-3 text-blue-500">
           <div className="hidden lg:block">
             <NavList1 />
