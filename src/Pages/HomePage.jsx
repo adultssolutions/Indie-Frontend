@@ -19,8 +19,12 @@ import HomeAboutUs2 from "../assets/us2.png";
 import Shop from "./Shop";
 import { Carousel } from "@material-tailwind/react";
 import { partnerhome } from "../constants";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <div className="flex justify-center items-center">

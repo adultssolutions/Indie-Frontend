@@ -8,12 +8,15 @@ import {
   footerInformation,
   footerDiscover,
 } from "../../constants";
+import { useNavigate } from "react-router";
 
 export default function Footer() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="overflow-hidden footer-top flex space-x-4 md:justify-evenly text-black bg-white p-8 pb-12 ">
-        <div className="w-1/2 md:w-48  pr-2">
+        <div onClick={() => navigate("/")} className="w-1/2 md:w-48  pr-2">
           <img className="w-32 my-8" src={logo}></img>
           <div className="socialLogo grid grid-cols-4  md:flex md:flex-row justify-start gap-2 pl-1  py-4">
             {socialMediaLinks.map((social, index) => (
