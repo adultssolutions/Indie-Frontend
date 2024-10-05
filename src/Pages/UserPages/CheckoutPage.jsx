@@ -6,6 +6,7 @@ import { auth } from "../../firebaseConfig";
 import { apiString } from "../../service/apicalls";
 import { clearCart } from "../../service/CartSlice";
 import React from "react";
+import ConfirmOrderMail from "../../service/emailService";
 
 const CheckoutPage = () => {
   const [formData, setFormData] = useState({
@@ -89,6 +90,23 @@ const CheckoutPage = () => {
             razorpayPaymentId: response.razorpay_payment_id,
             razorpaySignature: response.razorpay_signature,
           });
+          await ConfirmOrderMail(
+            formData.email,
+            formData.firstName + " " + formData.lastName,
+            response.razorpay_order_id,
+            "RazorPay",
+            totals.total,
+            products,
+            formData.streetAddress +
+              " " +
+              formData.city +
+              " " +
+              formData.state +
+              " " +
+              formData.country +
+              " " +
+              formData.pinCode
+          );
           alert("Payment successful!");
           navigate("/thankyou");
         },
@@ -159,6 +177,23 @@ const CheckoutPage = () => {
     if (formData.paymentMethod === "cashOnDelivery") {
       try {
         await axios.post(apiString+'/orders/createorder', orderData);
+        await ConfirmOrderMail(
+          formData.email,
+          formData.firstName + " " + formData.lastName,
+          response.data.razorpayOrderId,
+          "cashOnDelivery",
+          orderData.total,
+          products,
+          formData.streetAddress +
+            " " +
+            formData.city +
+            " " +
+            formData.state +
+            " " +
+            formData.country +
+            " " +
+            formData.pinCode
+        );
         dispatch(clearCart());
         navigate('/thankyou');
       localStorage.removeItem("cartState");

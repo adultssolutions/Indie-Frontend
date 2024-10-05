@@ -33,16 +33,19 @@ const categories = [
   {
     name: "Immunity Booster",
     href: ImmunityBooster,
+    productID: 1,
     size: "(1 item)",
   },
   {
     name: "Sugar Replacement",
     href: SugarReplacement,
+    productID: 3,
     size: "(2 items)",
   },
   {
     name: "Salt Revolution",
     href: SaltRevolution,
+    productID: 5,
     size: "(3 items)",
   },
 ];
@@ -56,10 +59,10 @@ const partnerhome = [
     name: "Pakka local",
     href: pakkalocal,
   },
-  {
-    name: "Red Rhino",
-    href: redrhino,
-  },
+  // {
+  //   name: "Red Rhino",
+  //   href: redrhino,
+  // },
   {
     name: "Clean Harbors",
     href: cleanharbors,
