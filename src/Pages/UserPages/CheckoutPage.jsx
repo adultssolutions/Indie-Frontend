@@ -85,31 +85,38 @@ const CheckoutPage = () => {
         description: "Order Payment",
         order_id: razorpayOrderId,
         handler: async (response) => {
-          await axios.post(apiString + "/orders/confirmPayment", {
-            razorpayOrderId: response.razorpay_order_id,
-            razorpayPaymentId: response.razorpay_payment_id,
-            razorpaySignature: response.razorpay_signature,
-          });
-          await ConfirmOrderMail(
-            formData.email,
-            formData.firstName + " " + formData.lastName,
-            response.razorpay_order_id,
-            "RazorPay",
-            totals.total,
-            products,
-            formData.streetAddress +
-              " " +
-              formData.city +
-              " " +
-              formData.state +
-              " " +
-              formData.country +
-              " " +
-              formData.pinCode
-          );
-          alert("Payment successful!");
-          navigate("/thankyou");
-        },
+          try {
+              // Confirm the payment with the backend
+              const paymentConfirmationResponse = await axios.post(apiString + "/orders/confirmPayment", {
+                  razorpayOrderId: response.razorpay_order_id,
+                  razorpayPaymentId: response.razorpay_payment_id,
+                  razorpaySignature: response.razorpay_signature,
+              });
+              // Check if the payment confirmation was successful
+              if (paymentConfirmationResponse.status === 200) {
+                  // Only run ConfirmOrderMail if payment confirmation is successful
+                  await ConfirmOrderMail(
+                      formData.email,
+                      `${formData.firstName} ${formData.lastName}`,
+                      paymentConfirmationResponse.data.razorpay_order_id,
+                      "RazorPay",
+                      totals.total,
+                      products,
+                      `${formData.streetAddress} ${formData.city} ${formData.state} ${formData.country} ${formData.pinCode}`
+                  );
+      
+                  alert("Payment successful!");
+                  navigate("/thankyou");
+              } else {
+                  // Handle any unexpected response status
+                  console.error("Payment confirmation failed:", paymentConfirmationResponse);
+                  alert("Payment confirmation failed. Please try again.");
+              }
+          } catch (error) {
+              console.error("Error confirming payment:", error);
+              alert("An error occurred while processing your payment. Please try again.");
+          }
+      },
         prefill: {
           name: `${OrderInfo.firstName} ${OrderInfo.lastName}`,
           email: OrderInfo.email,
@@ -176,11 +183,11 @@ const CheckoutPage = () => {
 
     if (formData.paymentMethod === "cashOnDelivery") {
       try {
-        await axios.post(apiString+'/orders/createorder', orderData);
+        const responses  = await axios.post(apiString+'/orders/createorder', orderData);
         await ConfirmOrderMail(
           formData.email,
           formData.firstName + " " + formData.lastName,
-          response.data.razorpayOrderId,
+          responses.data.razorpayOrderId,
           "cashOnDelivery",
           orderData.total,
           products,

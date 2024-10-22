@@ -30,6 +30,9 @@ import OrderPlacedPage from "./Pages/OrderPlacedPage";
 import ThankYouPage from "./Pages/Thankyou";
 
 function App() {
+  const conweb = "linkedin.com/in/mrityunjay-shrivastava/"
+  console.log("Built by Mrityunjay");
+  console.log("Link: "+conweb);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -128,14 +131,14 @@ function App() {
             </p>
           ),
         },
-        // {
-        //   path: "/blogs",
-        //   element: (
-        //     <p>
-        //       <BlogsPage />
-        //     </p>
-        //   ),
-        // },
+        {
+          path: "/blogs",
+          element: (
+            <p>
+              <BlogsPage />
+            </p>
+          ),
+        },
         {
           path: "/singleblog",
           element: (

@@ -6,7 +6,6 @@ export default function CarouselDefault() {
   {/* First carousel: visible only on tablets (md) and larger */}
   <div className="hidden md:block">
     <Carousel
-      autoplay="true"
       autoplayDelay="4000"
       loop="true"
       className="pb-12 lg:-mt-28 mt-0"
@@ -52,7 +51,6 @@ export default function CarouselDefault() {
   {/* Second carousel: visible only on mobile screens */}
   <div className="block md:hidden">
     <Carousel
-      autoplay="true"
       autoplayDelay="4000"
       loop="true"
       className="pb-12 lg:-mt-28 mt-0"

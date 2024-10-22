@@ -69,20 +69,20 @@ const cartSlice = createSlice({
         0
       );
 
-      const taxes = netTotal * 0.028; // 2.8% tax
+      const taxes = netTotal * 0; // 2.8% tax
 
       const noOfProducts = parseFloat(import.meta.env.VITE_NO_OF_PRODUCTS);
       const shippingCharges = parseFloat(import.meta.env.VITE_SHIPPING_CHARGES);
 
-      console.log(
-        "no",
-        state.products.map((product) => ({
-          name: product.name,
-          quantity: product.quantity,
-        })),
-        "shi",
-        shippingCharges
-      ); // Debugging line to check the values
+      // console.log(
+      //   "no",
+      //   state.products.map((product) => ({
+      //     name: product.name,
+      //     quantity: product.quantity,
+      //   })),
+      //   "shi",
+      //   shippingCharges
+      // ); // Debugging line to check the values
 
       const shippingChargesFinal =
         state.products.length >= 2 ||

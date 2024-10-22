@@ -159,7 +159,6 @@ export default function HomePage() {
         </h2>
         <Carousel
           loop={true}
-          autoplay={true}
           transition={{ duration: 2 }}
           className=" rounded-xl py-4"
           prevArrow={({ handlePrev }) => (

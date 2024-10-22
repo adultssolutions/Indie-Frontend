@@ -151,52 +151,52 @@ const footerDiscover = [
 const blogs = [
   {
     image:
-      "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-    title: "Here Is The Perfect Response For Your Great Weaknesses",
+      "https://firebasestorage.googleapis.com/v0/b/indie-admin.appspot.com/o/Blogs%2FThe%20Sweet%20Benefits%20of%20Raw%20Honey%20Why%20It%20Outshines%20Processed%20Honey.jpg?alt=media&token=ed760fc9-0fc1-485d-ac30-e880669c807b",
+    title: "The Sweet Benefits of Raw Honey: Why It Outshines Processed Honey",
     date: "August 07, 2024",
     excerpt:
-      "Struggling to answer the dreaded weakness question in interviews? Our blog offers the perfect response to highlight your strengths while addressing we...",
+      "Honey has been cherished for centuries, not just for its delightful sweetness but also for its potential health benefits. However, not all ...",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-    title: "How to Respond When Asked, 'Do you have Any Questions?'",
+      "https://firebasestorage.googleapis.com/v0/b/indie-admin.appspot.com/o/Blogs%2FUnlocking%20the%20Power%20of%20High%20Curcumin%20Turmeric.jpg?alt=media&token=74aaf38d-ad16-4a37-8583-3b2152141206",
+    title: "Unlocking the Power of High Curcumin Turmeric: Why It’s Your Best Choice",
     date: "August 05, 2024",
     excerpt:
-      'Wondering how to respond when asked, "Do you have any questions?" in an interview? Our blog provides smart, engaging questions to impress your...',
+      'Turmeric has long been celebrated for its vibrant color and potential health benefits. But not all turmeric is created equal! ...',
   },
   {
     image:
-      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-    title: "How to Respond When Asked, 'Do you have Any Questions?'",
+      "https://firebasestorage.googleapis.com/v0/b/indie-admin.appspot.com/o/Blogs%2FThe%20Power%20of%20Indigenous%20Farm%20Products.jpg?alt=media&token=8deced44-d238-4d52-a2af-e0ed6149f3e5",
+    title: "The Power of Indigenous Farm Products: Why They Outshine Conventional Produce",
     date: "August 05, 2024",
     excerpt:
-      'Wondering how to respond when asked, "Do you have any questions?" in an interview? Our blog provides smart, engaging questions to impress your...',
+      'In a world increasingly focused on sustainability and health, indigenous farm products are emerging as champions ...',
   },
   {
     image:
-      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-    title: "How to Respond When Asked, 'Do you have Any Questions?'",
+      "https://firebasestorage.googleapis.com/v0/b/indie-admin.appspot.com/o/Blogs%2FThe%20Sweet%20Truth%20Forest%20Honey%20vs.%20Farm%20Honey.jpg?alt=media&token=8aa2ee2a-f9a7-4181-973d-1ccd2f498a3d",
+    title: "The Sweet Truth: Forest Honey vs. Farm Honey",
     date: "August 05, 2024",
     excerpt:
-      'Wondering how to respond when asked, "Do you have any questions?" in an interview? Our blog provides smart, engaging questions to impress your...',
+      'Honey is often touted for its numerous health benefits and natural sweetness, but not all honey is created equal. Among the various types, forest honey and farm honey stand out...',
   },
   {
     image:
-      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-    title: "How to Respond When Asked, 'Do you have Any Questions?'",
+      "https://firebasestorage.googleapis.com/v0/b/indie-admin.appspot.com/o/Blogs%2FThe%20Timeless%20Art%20of%20Traditional%20Hand%20Grinding%20Why%20It%E2%80%99s%20Better%20Than%20Machine%20Ground%20Food%20Products.jpg?alt=media&token=89f77a1d-1582-42f7-813c-437d222ff9fd",
+    title: "The Timeless Art of Traditional Hand Grinding: Why It’s Better Than Machine Ground Food Products",
     date: "August 05, 2024",
     excerpt:
-      'Wondering how to respond when asked, "Do you have any questions?" in an interview? Our blog provides smart, engaging questions to impress your...',
+      'In the bustling kitchens of India, the sound of a grinding stone, or "silbatta," evokes memories of home-cooked meals and cherished family traditions. While modern conveniences ...',
   },
-  {
-    image:
-      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-    title: "How to Respond When Asked, 'Do you have Any Questions?'",
-    date: "August 05, 2024",
-    excerpt:
-      'Wondering how to respond when asked, "Do you have any questions?" in an interview? Our blog provides smart, engaging questions to impress your...',
-  },
+  // {
+  //   image:
+  //     "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
+  //   title: "How to Respond When Asked, 'Do you have Any Questions?'",
+  //   date: "August 05, 2024",
+  //   excerpt:
+  //     'Wondering how to respond when asked, "Do you have any questions?" in an interview? Our blog provides smart, engaging questions to impress your...',
+  // },
 ];
 const cardsData = [
   {
