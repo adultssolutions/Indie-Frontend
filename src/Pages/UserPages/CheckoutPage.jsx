@@ -88,6 +88,8 @@ const CheckoutPage = () => {
                   razorpayOrderId: response.razorpay_order_id,
                   razorpayPaymentId: response.razorpay_payment_id,
                   razorpaySignature: response.razorpay_signature,
+                  paymentMethod,
+                  items
               });
               // Check if the payment confirmation was successful
               if (paymentConfirmationResponse.status === 200) {
