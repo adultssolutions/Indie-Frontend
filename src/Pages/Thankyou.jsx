@@ -37,7 +37,7 @@ const ThankYouPage = () => {
         </svg>
         <h1 className="text-4xl font-bold text-gray-800">Thank You!</h1>
         <p className="mt-2 text-gray-600">
-          Your order has been placed successfully at IndieStorie.
+          Your order has been placed successfully at Indie Stori.
         </p>
         <p className="mt-4 text-gray-500">
           You will be redirected to the home page in {timeoutTimer} seconds...

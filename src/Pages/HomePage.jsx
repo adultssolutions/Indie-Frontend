@@ -151,17 +151,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Brand Partners */}
+      {/* corporate clients */}
 
       <div className="m-2 -mt-4">
         <h2 className="text-3xl text-pink-400 md:text-4xl font-semibold text-center my-6">
-          -Brand Partners-
+          -Corporate Clients-
         </h2>
         <Carousel
           loop={true}
-          autoplay={true}
           transition={{ duration: 2 }}
-          className=" rounded-xl"
+          className=" rounded-xl py-4"
           prevArrow={({ handlePrev }) => (
             <IconButton
               variant="text"
@@ -254,7 +253,7 @@ export default function HomePage() {
               key={index}
               className="flex justify-center w-full sm:w-auto sm:text-lg"
             >
-              <a href="/shop">
+              <a href={`/shop/${category.productID}`}>
                 <CircleHover category={category} />
               </a>
             </div>

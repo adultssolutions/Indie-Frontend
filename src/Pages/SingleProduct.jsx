@@ -66,7 +66,6 @@ export default function SingleProduct() {
       })
       .then(
         (response) => {
-          console.log("SUCCESS!", response.status, response.text);
           alert("Review sent");
         },
         (error) => {
@@ -127,7 +126,6 @@ export default function SingleProduct() {
     weight
   ) => {
     // const { productId, quantity, name, price, imageUrl } = product;
-    console.log("weight selected", weight);
     dispatch(
       addItem({
         productId,
@@ -185,7 +183,6 @@ export default function SingleProduct() {
 
   const memoizedShopData = useMemo(() => shopData, [shopData]);
 
-  console.log("shio", shopData?.sizes);
 
   if (loading) {
     return (

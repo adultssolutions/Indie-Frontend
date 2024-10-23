@@ -188,6 +188,17 @@ function NavList() {
         </Typography>
         <Typography
           as="a"
+          href="/blogs"
+          variant="paragraph"
+          color="blue-gray"
+          className="font-semibold text-blue-500"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4">
+            Blogs
+          </ListItem>
+        </Typography>
+        <Typography
+          as="a"
           href="/connect"
           variant="paragraph"
           color="blue-gray"
@@ -282,7 +293,7 @@ function NavList2() {
             Connect
           </ListItem>
         </Typography>
-        {/* <Typography
+        <Typography
           as="a"
           href="/blogs"
           variant="paragraph"
@@ -290,9 +301,9 @@ function NavList2() {
           className="font-semibold text-blue-500"
         >
           <ListItem className="flex items-center gap-2 py-2 sm:pr-0 md:pr-0 lg:pr-8">
-            Blog
+            Blogs
           </ListItem>
-        </Typography> */}
+        </Typography>
 
         <div className="flex items-center">
           <Typography

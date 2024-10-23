@@ -54,7 +54,7 @@ export default function UsesSection({
   }, []);
 
   return (
-    <div className="mx-auto  bg-customYellow">
+    <div className="mx-auto  bg-[#FBF7C3]">
       {isMobile ? (
         <div className="px-8">
           <select
@@ -100,7 +100,7 @@ export default function UsesSection({
                 key={value}
                 className={`${
                   activeTab === value ? "block" : "hidden"
-                } mt-4 w-full bg-customYellow text-center`}
+                } mt-4 w-full bg-[#FBF7C3] text-center`}
               >
                 <img
                   className="mx-auto max-h-screen"

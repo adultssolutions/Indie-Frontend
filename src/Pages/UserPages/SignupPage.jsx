@@ -120,10 +120,10 @@ const Signup = () => {
                             SIGN UP
                         </button>
                     </form>
-                    <button onClick={signInWithGoogle} className="w-full max-w-xs p-3 mx-2 mb-4 border flex items-center justify-center shadow-lg">
+                    {/* <button onClick={signInWithGoogle} className="w-full max-w-xs p-3 mx-2 mb-4 border flex items-center justify-center shadow-lg">
                         <i className="fa-brands -px-4 fa-google p-2"></i>
                         Continue with Google
-                    </button>
+                    </button> */}
                     <p>Already have an account? <a href="/login" className="text-blue-500">Log in</a></p>
                 </div>
             </div>

@@ -15,7 +15,6 @@ export default function UserTestimonials({ className }) {
             nextArrow={false}
             prevArrow={false}
             loop="true"
-            autoplay="true"
             autoplayDelay={4000}
             navigation={({ setActiveIndex, activeIndex, length }) => (
               <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
