@@ -31,10 +31,8 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const [isCashonDel, setIsCashonDel] = useState(true);
 
-  
-
   React.useEffect(() => {
-    if(products.length<1){
+    if (products.length < 1) {
       navigate("/shop");
     }
 
@@ -52,7 +50,6 @@ const CheckoutPage = () => {
     } else {
       setFormData({ ...formData, [id]: value });
     }
-    
   };
 
   const handlePayment = async (orderData, paymentMethod) => {
@@ -91,6 +88,8 @@ const CheckoutPage = () => {
                   razorpayOrderId: response.razorpay_order_id,
                   razorpayPaymentId: response.razorpay_payment_id,
                   razorpaySignature: response.razorpay_signature,
+                  paymentMethod,
+                  items
               });
               // Check if the payment confirmation was successful
               if (paymentConfirmationResponse.status === 200) {
@@ -202,14 +201,13 @@ const CheckoutPage = () => {
             formData.pinCode
         );
         dispatch(clearCart());
-        navigate('/thankyou');
-      localStorage.removeItem("cartState");
-
+        navigate("/thankyou");
+        localStorage.removeItem("cartState");
       } catch (error) {
         console.error("Error placing order:", error);
       }
     } else {
-    handlePayment(orderData, formData.paymentMethod);
+      handlePayment(orderData, formData.paymentMethod);
     }
   };
 
@@ -421,7 +419,10 @@ const CheckoutPage = () => {
             <h2 className="text-lg font-bold mb-4">Your order</h2>
             <ul className="mb-4">
               {products.map((product) => (
-                <li key={product.productId} className="flex justify-between my-2">
+                <li
+                  key={product.productId}
+                  className="flex justify-between my-2"
+                >
                   <span className="w-3/4">{product.name}</span>
                   <span className="w-1/4 text-right">
                     ₹{product.discountprice} x {product.quantity}
@@ -439,7 +440,7 @@ const CheckoutPage = () => {
             </div>
             <div className="flex justify-between font-bold">
               <span>Taxes</span>
-              <span>Rs.  { (totals.taxes).toFixed(2) }</span>
+              <span>Rs. {totals.taxes.toFixed(2)}</span>
             </div>
             <div className="flex justify-between font-bold">
               <span>Shipping Charges</span>
@@ -476,9 +477,9 @@ const CheckoutPage = () => {
                     value="cashOnDelivery"
                     checked={formData.paymentMethod === "cashOnDelivery"}
                     // onChange={handleChange}
-                    onChange = {(event) => {
+                    onChange={(event) => {
                       handleChange(event); // Call the existing handleChange
-                      setIsCashonDel(true) // Call the new function
+                      setIsCashonDel(true); // Call the new function
                     }}
                   />
                   <label htmlFor="cashOnDelivery" className="ml-2">
@@ -492,9 +493,9 @@ const CheckoutPage = () => {
                     name="paymentMethod"
                     value="razorpay"
                     checked={formData.paymentMethod === "razorpay"}
-                    onChange = {(event) => {
+                    onChange={(event) => {
                       handleChange(event); // Call the existing handleChange
-                      setIsCashonDel(false) // Call the new function
+                      setIsCashonDel(false); // Call the new function
                     }}
                   />
                   <label htmlFor="razorpay" className="ml-2">
