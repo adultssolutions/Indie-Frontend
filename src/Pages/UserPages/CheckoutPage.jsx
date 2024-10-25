@@ -438,10 +438,10 @@ const CheckoutPage = () => {
               <span>Net Total</span>
               <span>Rs. {totals.netTotal}</span>
             </div>
-            <div className="flex justify-between font-bold">
+            {/* <div className="flex justify-between font-bold">
               <span>Taxes</span>
               <span>Rs. {totals.taxes.toFixed(2)}</span>
-            </div>
+            </div> */}
             <div className="flex justify-between font-bold">
               <span>Shipping Charges</span>
               <span>Rs. {totals.shippingCharges}</span>
