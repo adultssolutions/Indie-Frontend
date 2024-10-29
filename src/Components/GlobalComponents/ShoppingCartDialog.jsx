@@ -84,13 +84,13 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
           <div className="footer flex justify-between">
             <div>
               <p>Net Total</p>
-              <p>Taxes</p>
+              {/*<p>Taxes</p>*/}
               <p>Shipping Charges</p>
               <p>Total</p>
             </div>
             <div>
               <p>Rs. {totals.netTotal}</p>
-              <p>Rs. {(parseFloat(totals.taxes)).toFixed(2) }</p>
+              {/*<p>Rs. {(parseFloat(totals.taxes)).toFixed(2) }</p>*/}
               <p>Rs. {totals.shippingCharges}</p>
               <p>Rs. {(parseFloat(totals.total)).toFixed(2)}</p>
             </div>
