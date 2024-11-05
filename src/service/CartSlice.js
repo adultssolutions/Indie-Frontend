@@ -18,21 +18,25 @@ const cartSlice = createSlice({
     addItem: (state, action) => {
       const { productId, quantity, name, discountprice, imageUrl, size } =
         action.payload;
-      const existingProduct = state.products.find(
-        (product) => product.productId === productId
-      );
-      if (existingProduct) {
-        existingProduct.quantity += quantity;
-      } else {
-        state.products.push({
-          productId,
-          quantity,
-          name,
-          discountprice,
-          imageUrl,
-          size,
-        });
-      }
+        const existingProduct = state.products.find(
+          (product) => product.productId === productId && product.size === size
+        );
+  
+        if (existingProduct) {
+          // If the product with the same size exists, update the quantity
+          existingProduct.quantity += quantity;
+        } else {
+          // Otherwise, add the new product to the cart
+          state.products.push({
+            productId,
+            quantity,
+            name,
+            discountprice,
+            imageUrl,
+            size,
+          });
+        }
+  
       calculateTotals(state);
     },
     updateQuantity: (state, action) => {

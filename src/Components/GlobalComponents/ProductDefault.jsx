@@ -148,7 +148,9 @@ export default function ProductDefault({ productData }) {
         ...card.sizes.map((size) => size.discountPrice)
       );
       const minPrice = Math.min(...card.sizes.map((size) => size.price));
-      const minSize = card.sizes.find(size => parseFloat(size.price) === minPrice)?.size
+      const minVariant = card.sizes.find(size => parseFloat(size.price) === minPrice)
+      const minSize = minVariant?.size
+      const imgUrl = minVariant?.imageUrl[0]
       const productNameWithSize = `${card.name} - ${minSize}`; // Concatenate name with size
   
       return (
@@ -163,7 +165,7 @@ export default function ProductDefault({ productData }) {
           >
             <img
               onClick={() => handleProductClick(card.id)}
-              src={card.imageUrl[0]}
+              src={imgUrl}
               alt="card-image"
               className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
             />
@@ -198,7 +200,7 @@ export default function ProductDefault({ productData }) {
                   1,
                   productNameWithSize, // Use concatenated name
                   minDiscountPrice,
-                  card.imageUrl[0],
+                  imgUrl,
                   minSize // Send the size as well if needed
                 )
               }
@@ -214,7 +216,7 @@ export default function ProductDefault({ productData }) {
                   1,
                   productNameWithSize, // Use concatenated name
                   minDiscountPrice,
-                  card.imageUrl[0],
+                  imgUrl,
                   minSize // Send the size as well if needed
                 )
               }

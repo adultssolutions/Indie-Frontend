@@ -39,7 +39,7 @@ export default function SingleReview({ className,reviews }) {
         -Reviews For Our Products-
         </h1>
         <div className="grid mt-4 lg:grid-cols-3 sm:grid-cols-1 mx-auto gap-4">
-          {reviews.slice(0, showAll ? reviews.length : 3).map((review, index) => (
+          {reviews.length > 0 && reviews.slice(0, showAll ? reviews.length : 3).map((review, index) => (
             <ClientReviewCard
               key={index}
               username={review.name}

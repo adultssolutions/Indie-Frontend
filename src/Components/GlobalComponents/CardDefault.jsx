@@ -89,6 +89,10 @@ export default function CardDefault() {
           ...card.sizes.map((size) => size.discountPrice)
         );
         const minPrice = Math.min(...card.sizes.map((size) => size.price));
+        const minVariant = card.sizes.find(size => parseFloat(size.price) === minPrice)
+        const minSize = minVariant?.size
+        const imgUrl = minVariant?.imageUrl[0]
+        const productNameWithSize = `${card.name} - ${minSize}`; // Concatenate name with size
         return (
           <Card
             key={card.productId}
@@ -101,7 +105,7 @@ export default function CardDefault() {
             >
               <img
                 onClick={() => handleProductClick(card.id)}
-                src={card.imageUrl[0]}
+                src={imgUrl}
                 alt="card-image"
                 className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
               />
@@ -111,7 +115,7 @@ export default function CardDefault() {
                 color="blue-gray"
                 className="text-sm sm:text-lg font-medium mb-2"
               >
-                {card.name}
+                {productNameWithSize}
               </Typography>
               {/* Ensure the price section stays at the bottom */}
               <Typography
@@ -135,9 +139,9 @@ export default function CardDefault() {
                   handleAddToCart(
                     card.id,
                     1,
-                    card.name,
+                    productNameWithSize,
                     minDiscountPrice,
-                    card.imageUrl[0],
+                    imgUrl,
                     card.sizes[0].size
                   )
                 }
@@ -151,9 +155,9 @@ export default function CardDefault() {
                   buyNow(
                     card.id,
                     1,
-                    card.name,
+                    productNameWithSize,
                     minDiscountPrice,
-                    card.imageUrl[0],
+                    imgUrl,
                     card.sizes[0].size
                   )
                 }

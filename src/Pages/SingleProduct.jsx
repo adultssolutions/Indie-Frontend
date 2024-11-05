@@ -35,6 +35,7 @@ import { Select, Option, IconButton } from "@material-tailwind/react";
 import ClientReviewCard from "../Components/SingleProduct/ClientReviewCard";
 export default function SingleProduct() {
   const [shopData, setShopData] = useState(null);
+  const [images,setImages] = useState([])
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -106,7 +107,9 @@ export default function SingleProduct() {
         setWeight(response.data?.sizes[0].size);
         setPrice(response.data?.sizes[0].price);
         setDiscountPrice(response.data?.sizes[0].discountPrice);
-        setActiveIndex(response.data.imageUrl[0]);
+        setImages(response.data?.sizes[0]?.imageUrl)
+        // setActiveIndex(response.data.imageUrl[0]);
+
       } catch (err) {
         setError(err);
       } finally {
@@ -179,6 +182,7 @@ export default function SingleProduct() {
       setWeight(selectedSize.size);
       setPrice(selectedSize.price);
       setDiscountPrice(selectedSize.discountPrice);
+      setImages(selectedSize.imageUrl)
     }
   };
 
@@ -211,10 +215,6 @@ export default function SingleProduct() {
   // const handleOpen = (value) => setOpen(open === value ? 0 : value);
   const videoEmbedUrl = shopData.video1.replace("watch?v=", "embed/");
 
-  // Determine the image range based on selected weight
-const imageStartIndex = weight === shopData?.sizes[0].size ? 0 : 4;
-const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
-
   return (
     <div className="bg-white">
       <div className="w-full lg:flex my-4">
@@ -225,18 +225,18 @@ const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
                 className="h-auto w-full max-w-full rounded-lg object-cover
               object-center md:h-[480px]"
               >
-                {shopData.imageUrl?.slice(imageStartIndex, imageEndIndex + 1).map((src, index) => (
+                {images?.map((src, index) => (
                   <img
                     key={index} // Each image needs a unique key
                     src={src}
-                    alt={`image ${imageStartIndex + index + 1}`} // Update index for accessibility
+                    alt={`image`} // Update index for accessibility
                     className="h-full w-full object-cover"
                   />
                 ))}
               </Carousel>
             </div>
             <div className="hidden md:grid grid-cols-5 gap-4">
-              {shopData.imageUrl.map((imgsource, index) => (
+              {images.map((imgsource, index) => (
                 <div key={index}>
                   <img
                     src={imgsource}
@@ -401,7 +401,7 @@ const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
                   productQuantity,
                   `${shopData.name} - ${weight}`,
                   discountPrice,
-                  shopData.imageUrl[0],
+                  images?.[0],
                   weight
                 )
               }
@@ -416,7 +416,7 @@ const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
                   productQuantity,
                  `${shopData.name} - ${weight}`,
                   discountPrice,
-                  shopData.imageUrl[0],
+                  images?.[0],
                   weight
                 )
               }
@@ -503,7 +503,7 @@ const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
         </div>
       </section>
       
-      <SingleReview/>
+      {/* <SingleReview/> */}
       <UserTestimonials />
       <SingleReview reviews={shopData?.reviews}/>
 
