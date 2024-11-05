@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import {
   Card,
@@ -140,88 +142,91 @@ export default function ProductDefault({ productData }) {
     //   <ShoppingCartDialog size={size} handleOpen={handleOpen} />
     // </div>
 
-    <div className="w-full grid bg-gray grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:grid-cols-4 p-2 gap-x-2 gap-y-2 md:gap-4 lg:gap-3">
-      {productData.map((card, index) => {
-        const minDiscountPrice = Math.min(
-          ...card.sizes.map((size) => size.discountPrice)
-        );
-        const minPrice = Math.min(...card.sizes.map((size) => size.price));
-        return (
-          <Card
-            key={card.productId}
-            className="flex flex-col w-full shadow-md max-w-80 mx-auto md:transition-transform md:transform md:hover:scale-105"
+    <div className="w-full grid bg-gray grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-2 gap-x-2 gap-y-2 md:gap-4 lg:gap-3">
+    {productData.map((card, index) => {
+      const minDiscountPrice = Math.min(
+        ...card.sizes.map((size) => size.discountPrice)
+      );
+      const minPrice = Math.min(...card.sizes.map((size) => size.price));
+      const minSize = card.sizes.find(size => parseFloat(size.price) === minPrice)?.size
+      const productNameWithSize = `${card.name} - ${minSize}`; // Concatenate name with size
+  
+      return (
+        <Card
+          key={card.productId}
+          className="flex flex-col w-full shadow-md max-w-80 mx-auto md:transition-transform md:transform md:hover:scale-105"
+        >
+          <CardHeader
+            shadow={false}
+            floated={false}
+            className="h-32 m-3 md:m-4 sm:h-48 overflow-hidden relative"
           >
-            <CardHeader
-              shadow={false}
-              floated={false}
-              className="h-32 m-3 md:m-4 sm:h-48 overflow-hidden relative"
+            <img
+              onClick={() => handleProductClick(card.id)}
+              src={card.imageUrl[0]}
+              alt="card-image"
+              className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
+            />
+          </CardHeader>
+          <CardBody className="p-1 md:p-4 flex flex-col grow">
+            <Typography
+              color="blue-gray"
+              className="text-sm sm:text-lg font-medium mb-2"
             >
-              <img
-                onClick={() => handleProductClick(card.id)}
-                src={card.imageUrl[0]}
-                alt="card-image"
-                className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
-              />
-            </CardHeader>
-            <CardBody className="p-1 md:p-4 flex flex-col grow">
-              <Typography
-                color="blue-gray"
-                className="text-sm sm:text-lg font-medium mb-2"
-              >
-                {card.name}
-              </Typography>
-              {/* Ensure the price section stays at the bottom */}
-              <Typography
-                id="price"
-                color="blue-gray"
-                className="text-sm sm:text-lg 
+              {productNameWithSize} {/* Display concatenated name */}
+            </Typography>
+            <Typography
+              id="price"
+              color="blue-gray"
+              className="text-sm sm:text-lg 
               flex flex-row justify-center
               font-medium mt-auto w-full text-right"
-              >
-                <span className="line-through opacity-40 pr-2">
-                  RS. {minPrice}
-                </span>
-                RS. {minDiscountPrice}
-              </Typography>
-            </CardBody>
-            <CardFooter className="pt-2 px-3 md:px-4 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3">
-              <Button
-                ripple={false}
-                className="w-full p-1 h-10 md:w-1/2 bg-white border-4 hover:border-blue-400 hover:bg-white shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg"
-                onClick={() =>
-                  handleAddToCart(
-                    card.id,
-                    1,
-                    card.name,
-                    minDiscountPrice,
-                    card.imageUrl[0],
-                    card.sizes[0].size
-                  )
-                }
-              >
-                Add to Cart
-              </Button>
-              <Button
-                ripple={false}
-                className="w-full h-10 p-1 md:p-1 md:w-1/2 hover:bg-white border-4 hover:border-pink-400 hover:text-pink-400 shadow-none bg-pink-400 border-pink-400 text-white hover:shadow-lg"
-                onClick={() =>
-                  buyNow(
-                    card.id,
-                    1,
-                    card.name,
-                    minDiscountPrice,
-                    card.imageUrl[0],
-                    card.sizes[0].size
-                  )
-                }
-              >
-                Buy Now
-              </Button>
-            </CardFooter>
-          </Card>
-        );
-      })}
-      <ShoppingCartDialog size={size} handleOpen={handleOpen} />
-    </div>
+            >
+              <span className="line-through opacity-40 pr-2">
+                RS. {minPrice}
+              </span>
+              RS. {minDiscountPrice}
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-2 px-3 md:px-4 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3">
+            <Button
+              ripple={false}
+              className="w-full p-1 h-10 md:w-1/2 bg-white border-4 hover:border-blue-400 hover:bg-white shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg"
+              onClick={() =>
+                handleAddToCart(
+                  card.id,
+                  1,
+                  productNameWithSize, // Use concatenated name
+                  minDiscountPrice,
+                  card.imageUrl[0],
+                  minSize // Send the size as well if needed
+                )
+              }
+            >
+              Add to Cart
+            </Button>
+            <Button
+              ripple={false}
+              className="w-full h-10 p-1 md:p-1 md:w-1/2 hover:bg-white border-4 hover:border-pink-400 hover:text-pink-400 shadow-none bg-pink-400 border-pink-400 text-white hover:shadow-lg"
+              onClick={() =>
+                buyNow(
+                  card.id,
+                  1,
+                  productNameWithSize, // Use concatenated name
+                  minDiscountPrice,
+                  card.imageUrl[0],
+                  minSize // Send the size as well if needed
+                )
+              }
+            >
+              Buy Now
+            </Button>
+          </CardFooter>
+        </Card>
+      );
+    })}
+    <ShoppingCartDialog size={size} handleOpen={handleOpen} />
+  </div>
+  
   );
 }

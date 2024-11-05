@@ -210,6 +210,10 @@ export default function SingleProduct() {
   // const handleOpen = (value) => setOpen(open === value ? 0 : value);
   const videoEmbedUrl = shopData.video1.replace("watch?v=", "embed/");
 
+  // Determine the image range based on selected weight
+const imageStartIndex = weight === shopData?.sizes[0].size ? 0 : 4;
+const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
+
   return (
     <div className="bg-white">
       <div className="w-full lg:flex my-4">
@@ -220,11 +224,11 @@ export default function SingleProduct() {
                 className="h-auto w-full max-w-full rounded-lg object-cover
               object-center md:h-[480px]"
               >
-                {shopData.imageUrl.map((src, index) => (
+                {shopData.imageUrl?.slice(imageStartIndex, imageEndIndex + 1).map((src, index) => (
                   <img
                     key={index} // Each image needs a unique key
                     src={src}
-                    alt={`image ${index + 1}`}
+                    alt={`image ${imageStartIndex + index + 1}`} // Update index for accessibility
                     className="h-full w-full object-cover"
                   />
                 ))}
@@ -249,7 +253,7 @@ export default function SingleProduct() {
             <p className="text-gray-600">Indie Stori</p>
           </div>
 
-          <h1 className="text-2xl font-sans font-semibold">{shopData.name}</h1>
+          <h1 className="text-2xl font-sans font-semibold">{shopData.name} - {weight}</h1>
           <p className="font-serif font-bold mt-4 text-xl">
             {shopData.description}
           </p>
@@ -347,11 +351,11 @@ export default function SingleProduct() {
           )}
 
           <div className="flex flex-col gap-4 my-4 text-xl">
-            {/* <div className="flex gap-2">
-              <p>Weight:</p>
+            <div className="flex gap-2">
+              <p>Variant:</p>
               <div className="max-w-[250px]">
                 <Select
-                  label="Select weight"
+                  label="Select variant"
                   value={weight}
                   onChange={(e) => handleWeightChange(e)}
                 >
@@ -362,7 +366,7 @@ export default function SingleProduct() {
                   ))}
                 </Select>
               </div>
-            </div> */}
+            </div>
             <div className="">
               <p>Quantity:</p>
               <div className="flex w-max gap-4 my-4">
@@ -394,7 +398,7 @@ export default function SingleProduct() {
                 buyNow(
                   shopData.id,
                   productQuantity,
-                  shopData.name,
+                  `${shopData.name} - ${weight}`,
                   discountPrice,
                   shopData.imageUrl[0],
                   weight
@@ -409,7 +413,7 @@ export default function SingleProduct() {
                 handleAddToCart(
                   shopData.id,
                   productQuantity,
-                  shopData.name,
+                 `${shopData.name} - ${weight}`,
                   discountPrice,
                   shopData.imageUrl[0],
                   weight
@@ -499,6 +503,7 @@ export default function SingleProduct() {
       </section>
 
       <UserTestimonials />
+      <SingleReview reviews={shopData?.reviews}/>
 
       <div className=" p-6 md:px-8 lg:px-12 ">
         <h3>Add a Review</h3>
