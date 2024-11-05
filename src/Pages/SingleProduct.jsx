@@ -32,6 +32,7 @@ import chemicalFree from "../assets/Chemicalfree.png";
 import natural from "../assets/100NAtural.png";
 import emailjs from "@emailjs/browser";
 import { Select, Option, IconButton } from "@material-tailwind/react";
+import ClientReviewCard from "../Components/SingleProduct/ClientReviewCard";
 export default function SingleProduct() {
   const [shopData, setShopData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -501,7 +502,8 @@ const imageEndIndex = weight === shopData?.sizes[1].size ? 5 : 8;
           ></iframe>
         </div>
       </section>
-
+      
+      <SingleReview/>
       <UserTestimonials />
       <SingleReview reviews={shopData?.reviews}/>
 

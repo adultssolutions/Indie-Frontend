@@ -7,29 +7,29 @@ export default function SingleReview({ className,reviews }) {
 
   // const reviews = [
   //   {
-  //     username: "Holden Caulfield",
-  //     usertext: "Synth chartreuse iPhone lomo cray raw denim",
+  //     username: "Lakshay Bishnoi",
+  //     usertext: "Since last 3 days I feel very energized. Now I understand how important it is for us to have curcumin in our daily diets.",
   //   },
   //   {
-  //     username: "Holden Caulfield",
-  //     usertext: "Synth chartreuse iPhone lomo cray raw denim",
+  //     username: "Avinash Paul",
+  //     usertext: " Beautiful, creative and attractive product packaging. This turmeric powder is really strong and flavourful, better than many known brand names that have been tried at my home. My mother really liked cooking with it and all of us at home can feel the difference in flavours",
   //   },
   //   {
-  //     username: "Holden Caulfield",
-  //     usertext: "Synth chartreuse iPhone lomo cray raw denim",
+  //     username: "Anjali",
+  //     usertext: "Pure and Beneficial, I would say that this turmeric powder would be my all time favourite companion with my daily cup of milk at night.😊.... this is pure and the best part is I can also give a little gratitude towards the Indiestori concept. 👍,,,.. great initiative",
   //   },
   //   {
-  //     username: "Holden Caulfield",
-  //     usertext: "Synth chartreuse iPhone lomo cray raw denim",
+  //     username: "Akash Mishra",
+  //     usertext: "Its actually as per its name, himalayan product.... the richness and the pure turmeric aroma is just worth experiencing 😍... must try 👍🏻",
   //   },
   //   {
-  //     username: "Holden Caulfield",
-  //     usertext: "Synth chartreuse iPhone lomo cray raw denim",
+  //     username: "Sidharth",
+  //     usertext: "Great product. The colour and texture of the turmeric is very authentic and it helped cure my throat issues. Thanks!",
   //   },
   //   {
-  //     username: "Holden Caulfield",
-  //     usertext: "Synth chartreuse iPhone lomo cray raw denim",
-  //   }
+  //     username: "Rahul",
+  //     usertext: "Found it authentic and highly usable especially in this weather to boost our immunity and overall health. Must try it.",
+  //   },
   // ];
 
   return (
@@ -38,8 +38,8 @@ export default function SingleReview({ className,reviews }) {
         <h1 className="text-3xl my-12 tracking-widest font-mono space-x-1 title-font text-pink-400 mb-4 text-center">
         -Reviews For Our Products-
         </h1>
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 mx-auto gap-4">
-          {reviews?.length > 0 && reviews.slice(0, showAll ? reviews.length : 3).map((review, index) => (
+        <div className="grid mt-4 lg:grid-cols-3 sm:grid-cols-1 mx-auto gap-4">
+          {reviews.slice(0, showAll ? reviews.length : 3).map((review, index) => (
             <ClientReviewCard
               key={index}
               username={review.name}
