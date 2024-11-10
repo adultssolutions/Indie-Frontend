@@ -1,9 +1,18 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { blogs } from "../constants/index";
 import { Button } from "@material-tailwind/react";
 
-const BlogCard = ({ image, title, excerpt, onClick }) => {
+
+
+const BlogCard = ({ indexv,image, title, excerpt, onClick }) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleClick = () => {
+    navigate(`/blogs/${indexv}`); // Navigate to the dynamic URL using the key
+  };
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full h-64" src={image} alt={title} />
@@ -12,12 +21,13 @@ const BlogCard = ({ image, title, excerpt, onClick }) => {
         <p className="text-gray-700 text-base">{excerpt.substring(0,120) + "..."}</p>
         <Button
           className="bg-blue-700 rounded-sm mt-4 inline-block"
-          onClick={onClick}
+          onClick={handleClick} // Handle click to navigate
         >
           Read More
         </Button>
       </div>
     </div>
+    
   );
 };
 
@@ -61,6 +71,7 @@ const BlogsPage = () => {
           {blogs.map((blog, index) => (
             <BlogCard
               key={index}
+              indexv = {index}
               image={blog.image}
               title={blog.title}
               excerpt={blog.excerpt}
@@ -79,6 +90,10 @@ const BlogsPage = () => {
         />
       )}
     </div>
+    // <div className="w-3/4 mx-auto px-16">
+    //     <CaList className="bg-black"/>
+    // </div>
+    
   );
 };
 
