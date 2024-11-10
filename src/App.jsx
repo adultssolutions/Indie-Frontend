@@ -29,6 +29,7 @@ import SingleBlogPage from "./Pages/SingleBlogPage";
 import OrderPlacedPage from "./Pages/OrderPlacedPage";
 import ThankYouPage from "./Pages/Thankyou";
 
+
 function App() {
   const conweb = "linkedin.com/in/mrityunjay-shrivastava/"
   console.log("Built by Mrityunjay");
@@ -140,7 +141,7 @@ function App() {
           ),
         },
         {
-          path: "/singleblog",
+          path: "/blogs/:id",
           element: (
             <p>
               <SingleBlogPage />
@@ -154,7 +155,7 @@ function App() {
               <ReturnPolicy />
             </p>
           ),
-        },
+        }
       ],
     },
   ]);
