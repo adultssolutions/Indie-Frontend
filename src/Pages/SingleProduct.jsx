@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router";
 import {
   Accordion,
@@ -35,7 +36,7 @@ import { Select, Option, IconButton } from "@material-tailwind/react";
 import ClientReviewCard from "../Components/SingleProduct/ClientReviewCard";
 export default function SingleProduct() {
   const [shopData, setShopData] = useState(null);
-  const [images,setImages] = useState([])
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -107,9 +108,8 @@ export default function SingleProduct() {
         setWeight(response.data?.sizes[0].size);
         setPrice(response.data?.sizes[0].price);
         setDiscountPrice(response.data?.sizes[0].discountPrice);
-        setImages(response.data?.sizes[0]?.imageUrl)
+        setImages(response.data?.sizes[0]?.imageUrl);
         // setActiveIndex(response.data.imageUrl[0]);
-
       } catch (err) {
         setError(err);
       } finally {
@@ -177,17 +177,16 @@ export default function SingleProduct() {
   };
 
   const handleWeightChange = (value) => {
-    const selectedSize = shopData?.sizes.find((item) => item.size === value);
+    const selectedSize = shopData?.sizes.find((item) => item.size === value.size);
     if (selectedSize) {
       setWeight(selectedSize.size);
       setPrice(selectedSize.price);
       setDiscountPrice(selectedSize.discountPrice);
-      setImages(selectedSize.imageUrl)
+      setImages(selectedSize.imageUrl);
     }
   };
 
   const memoizedShopData = useMemo(() => shopData, [shopData]);
-
 
   if (loading) {
     return (
@@ -205,8 +204,8 @@ export default function SingleProduct() {
     );
   }
 
-  const pageUrl = (window.location.href);
-  const pageTitle = (document.title);
+  const pageUrl = window.location.href;
+  const pageTitle = document.title;
 
   const handleShare = (platform) => {
     ProductShare(pageUrl, pageTitle, platform);
@@ -254,7 +253,9 @@ export default function SingleProduct() {
             <p className="text-gray-600">Indie Stori</p>
           </div>
 
-          <h1 className="text-2xl font-sans font-semibold">{shopData.name} - {weight}</h1>
+          <h1 className="text-2xl font-sans font-semibold">
+            {shopData.name} - {weight}
+          </h1>
           <p className="font-serif font-bold mt-4 text-xl">
             {shopData.description}
           </p>
@@ -352,7 +353,7 @@ export default function SingleProduct() {
           )}
 
           <div className="flex flex-col gap-4 my-4 text-xl">
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               <p>Variant:</p>
               <div className="max-w-[250px]">
                 <Select
@@ -366,6 +367,27 @@ export default function SingleProduct() {
                     </Option>
                   ))}
                 </Select>
+              </div>
+            </div> */}
+            <div className="flex flex-col space-y-4 md:space-y-2">
+              <p>Size:</p>
+              <div className="flex space-x-4 flex-wrap">
+                {shopData?.sizes?.map((size, index) => (
+                  <button
+                    key={index}
+                    className={`px-2 py-1.5 text-sm rounded-md border border-black ${
+                      weight === size.size
+                        ? "bg-black text-white"
+                        : "bg-white text-black"
+                    }`}
+                    onClick={() => {
+                      console.log(size)
+                      handleWeightChange(size);
+                    }}
+                  >
+                    {size.size}
+                  </button>
+                ))}
               </div>
             </div>
             <div className="">
@@ -414,7 +436,7 @@ export default function SingleProduct() {
                 handleAddToCart(
                   shopData.id,
                   productQuantity,
-                 `${shopData.name} - ${weight}`,
+                  `${shopData.name} - ${weight}`,
                   discountPrice,
                   images?.[0],
                   weight
@@ -502,10 +524,10 @@ export default function SingleProduct() {
           ></iframe>
         </div>
       </section>
-      
+
       {/* <SingleReview/> */}
       <UserTestimonials />
-      <SingleReview reviews={shopData?.reviews}/>
+      <SingleReview reviews={shopData?.reviews} />
 
       <div className=" p-6 md:px-8 lg:px-12 ">
         <h3>Add a Review</h3>
